@@ -97,10 +97,10 @@ const BlockEditorApp = () => {
 		// 	from="opacity-0 transform -translate-y-4"
 		// 	to="opacity-100 transform translate-y-0"
 		// >
-		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center items-start">
+		<div className="px-4 sm:px-6 py-48 flex flex-row justify-center items-start">
 
 			{/* LHS */}
-			<Apply className="-mt-32 pt-32 sticky top-0">
+			<Apply className="-mt-48 sticky top-0" style={{ paddingTop: tw(30) }}>
 				<aside className="flex-shrink-0 hidden md:block w-64">
 
 					{/* Search bar */}
