@@ -74,37 +74,25 @@ function BlockEditorReducer(state, action) {
 }
 
 const BlockEditorApp = () => {
-	// const [mounted, setMounted] = React.useState(false)
-	//
-	// React.useEffect(() => {
-	// 	setTimeout(() => {
-	// 		setMounted(true)
-	// 	}, 200)
-	// }, [])
+	// const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
 
 	const searchInputRef = React.useRef(null)
 	const searchHeaderRef = React.useRef(null)
 
+	const [searchText, setSearchText] = React.useState("")
+
 	React.useLayoutEffect(() => {
+		if (!searchText) {
+			// No-op
+			return
+		}
 		const nudge = (searchHeaderRef.current.offsetHeight - searchInputRef.current.offsetHeight) / 2
 		searchHeaderRef.current.style.marginTop = (-searchInputRef.current.offsetHeight + -nudge) + "px"
-	}, [])
+	}, [searchText])
 
-	const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
-
-	// TODO: Move to reducer or use local state?
-	const [searchText, setSearchText] = React.useState("")
 
 	// NOTE: Uses items-start because of sticky top-0.
 	return (
-		// TODO: REMOVE THESE COMMENTS IN PRODUCTION.
-		//
-		// <Transition
-		// 	on={mounted}
-		// 	className="transition duration-700 ease-out"
-		// 	from="opacity-0 transform -translate-y-4"
-		// 	to="opacity-100 transform translate-y-0"
-		// >
 		<div className="px-4 sm:px-6 py-48 flex flex-row justify-center items-start">
 
 			{/* LHS */}
@@ -127,14 +115,18 @@ const BlockEditorApp = () => {
 						<ApplyTransition>
 							<Apply className="bg-gray-100 focus:outline-none">
 								<input
-									// id="search-bar"
+									id="search-bar"
 									ref={searchInputRef}
 									className="px-4 w-full h-10 text-gray-800 rounded-full"
 									style={{ padding: `0 ${tw(4 + 5 + 2)}` }}
 									type="text"
 									placeholder="Search"
 									value={searchText}
-									onChange={e => setSearchText(e.target.value)}
+									onChange={e => {
+										// TODO: Should restore the scroll position before onChange.
+										window.scrollTo(0, 0)
+										setSearchText(e.target.value)
+									}}
 									{...disableAutoCorrect}
 								/>
 							</Apply>
@@ -230,19 +222,15 @@ const BlockEditorApp = () => {
 			<div className="flex-shrink-0 hidden md:block w-12" />
 			<main className="w-full max-w-2xl">
 
-				<div className="relative">
-					{/* NOTE: Uses -mt-20 to emulate flex flex-row align-baseline. */}
-					{/* <div className="-mt-20 absolute top-0"> */}
-					{/* 	<h1 className="font-bold text-3xl"> */}
-					{/* 		Searching “Hello, world!” */}
-					{/* 	</h1> */}
-					{/* </div> */}
-					<div className="-mt-8 absolute top-0">
-						<h1 ref={searchHeaderRef} className="font-bold text-3xl">
-							Searching “Hello, world!”
-						</h1>
+				{searchText && (
+					<div className="relative">
+						<div className="-mt-8 absolute top-0">
+							<h1 ref={searchHeaderRef} className="font-bold text-3xl text-gray-800">
+								Searching “{searchText}”
+							</h1>
+						</div>
 					</div>
-				</div>
+				)}
 
 				<FakeContent />
 			</main>
@@ -252,7 +240,6 @@ const BlockEditorApp = () => {
 			<aside className="flex-shrink-0 hidden xl:block w-64" />
 
 		</div>
-		// </Transition>
 	)
 }
 
