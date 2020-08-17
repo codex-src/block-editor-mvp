@@ -123,17 +123,18 @@ const BlockEditorApp = () => {
 					<div className="relative">
 
 						{/* Search bar LHS */}
-						<div className="px-4 absolute inset-y-0 left-0 pointer-events-none">
-							<div className="flex flex-row items-center h-full">
-								<ApplyTransition>
-									{/* NOTE: Uses text-teal-500 not text-teal-400. */}
-									<Apply className={!searchText ? "text-gray-300" : "text-teal-500"}>
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-										{/* <svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg> */}
-									</Apply>
-								</ApplyTransition>
+						{!searchText && (
+							<div className="px-6 absolute inset-y-0 left-0 pointer-events-none">
+								<div className="flex flex-row items-center h-full">
+									<ApplyTransition>
+										<Apply className="text-gray-300">
+											<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+											{/* <svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg> */}
+										</Apply>
+									</ApplyTransition>
+								</div>
 							</div>
-						</div>
+						)}
 
 						{/* <input type="text"> */}
 						<ApplyTransition>
@@ -142,10 +143,10 @@ const BlockEditorApp = () => {
 								<input
 									id="search-bar"
 									ref={searchInputRef}
-									className="px-4 w-full h-12 text-gray-800 rounded-full focus:outline-none"
+									className="px-6 w-full h-12 text-gray-800 rounded-full focus:outline-none"
 									style={{
-										paddingLeft: tw(4 /* px-4 */ + 5 /* w-5 h-5 */ + 2),
-										// paddingRight: tw(4 /* px-4 */ + 1 /* p-1 */ + 4 /* w-4 h-4 */ + 1 /* p-1 */ + 2),
+										paddingLeft: !searchText && tw(6 + 5 + 2), //  tw(4 /* px-4 */ + 5 /* w-5 h-5 */ + 2),
+										paddingRight: tw(4 /* px-4 */ + 1 /* p-1 */ + 4 /* w-4 h-4 */ + 1 /* p-1 */ + 2),
 										fontSize: tw(4.25),
 									}}
 									type="text"
@@ -205,7 +206,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								Hello, it's me
 							</p>
@@ -213,7 +217,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								I was wondering if after all these years you'd like to meet
 							</p>
@@ -221,7 +228,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								To go over everything
 							</p>
@@ -229,7 +239,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								They say that time's supposed to heal ya
 							</p>
@@ -237,7 +250,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								But I ain't done much healing
 							</p>
@@ -245,7 +261,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								Hello, can you hear me?
 							</p>
@@ -253,7 +272,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								I'm in California dreaming about who we used to be
 							</p>
@@ -261,7 +283,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								When we were younger and free
 							</p>
@@ -269,7 +294,10 @@ const BlockEditorApp = () => {
 						<li>
 							<p
 								className="text-sm truncate text-gray-500"
-								style={{ letterSpacing: "0.0125em" }}
+								style={{
+									// fontSize: tw(3.75),
+									letterSpacing: "0.0125em",
+								}}
 							>
 								I've forgotten how it felt before the world fell at our feet
 							</p>
@@ -293,6 +321,7 @@ const BlockEditorApp = () => {
 									{/* <span className="text-gray-300"> */}
 									“
 									{/* </span> */}
+									{/* <span className="text-white bg-teal-400 rounded"> */}
 									<span className="underline" style={{ textDecorationColor: "var(--teal-400)" }}>
 										{searchText.trim()}
 									</span>
@@ -326,7 +355,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -338,7 +370,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -350,7 +385,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -362,7 +400,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -374,7 +415,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -386,7 +430,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -398,7 +445,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -410,7 +460,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
@@ -422,7 +475,10 @@ const FakeContent = () => (
 		</p>
 		<p
 			className="leading-relaxed text-gray-800"
-			style={{ fontSize: tw(4.25), lineHeight: 1 }}
+			style={{
+				fontSize: tw(4.25),
+				lineHeight: 1,
+			}}
 		>
 			<br />
 		</p>
