@@ -243,7 +243,16 @@ const BlockEditorApp = () => {
 						<div className="-mt-8 absolute top-0">
 							<DocumentTitle title={`Searching “${searchText}”`}>
 								<h1 ref={searchHeaderRef} className="font-bold text-3xl text-gray-800">
-									Searching “{searchText}”
+									Searching{" "}
+									{/* <span className="text-gray-400"> */}
+									“
+									{/* </span> */}
+									<span className="underline" style={{ textDecorationColor: "var(--gray-300)" }}>
+										{searchText.trim()}
+									</span>
+									{/* <span className="text-gray-400"> */}
+									”
+									{/* </span> */}
 								</h1>
 							</DocumentTitle>
 						</div>
