@@ -89,7 +89,7 @@ const BlockEditorApp = () => {
 
 	// NOTE: Uses items-start because of sticky top-0.
 	return (
-		// TODO: REMOVE IN PRODUCTION.
+		// TODO: REMOVE THESE COMMENTS IN PRODUCTION.
 		//
 		// <Transition
 		// 	on={mounted}
@@ -150,14 +150,14 @@ const BlockEditorApp = () => {
 					<ul className="space-y-3">
 
 						{/* Header */}
-						<Apply className="flex flex-row items-center">
-							<li className="font-semibold text-xs tracking-wider truncate text-gray-400">
-								<Apply className="mr-2 transform scale-90">
-									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
-								</Apply>
-								{"Adele – Hello".toUpperCase()}
-							</li>
-						</Apply>
+						{/* <Apply className="flex flex-row items-center"> */}
+						{/* 	<li className="font-semibold text-xs tracking-wider truncate text-gray-400"> */}
+						{/* 		<Apply className="mr-2 transform scale-90"> */}
+						{/* 			<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg> */}
+						{/* 		</Apply> */}
+						{/* 		{"Adele – Hello".toUpperCase()} */}
+						{/* 	</li> */}
+						{/* </Apply> */}
 
 						{/* Subheaders */}
 						<li className="font-medium text-sm truncate text-gray-400">
