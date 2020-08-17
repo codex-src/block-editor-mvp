@@ -105,21 +105,25 @@ const BlockEditorApp = () => {
 
 					{/* Search bar */}
 					<div className="relative">
+
+						{/* Search bar LHS */}
 						<div className="px-4 absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
 								<ApplyTransition>
-									<Apply className="text-gray-400" style={{ color: searchText && "var(--gray-800)" }}>
+									<Apply className="text-gray-400" style={{ color: searchText && "var(--blue-500)" }}>
 										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
 									</Apply>
 								</ApplyTransition>
 							</div>
 						</div>
+
+						{/* <input> */}
 						<ApplyTransition>
 							<Apply className="bg-gray-100 focus:outline-none">
 								<input
 									id="search-bar"
-									className="px-4 w-full h-10 !text-lg text-gray-800 rounded-full"
-									style={{ paddingLeft: tw(4 + 5 + 2) }}
+									className="px-4 w-full h-10 text-gray-800 rounded-full"
+									style={{ padding: `0 ${tw(4 + 5 + 2)}` }}
 									type="text"
 									placeholder="Search"
 									onChange={e => setSearchText(e.target.value)}
@@ -127,6 +131,18 @@ const BlockEditorApp = () => {
 								/>
 							</Apply>
 						</ApplyTransition>
+
+						{/* Search bar RHS */}
+						<div className="px-4 absolute inset-y-0 right-0 pointer-events-none" style={{ pointerEvents: searchText && "auto" }}>
+							<div className="flex flex-row items-center h-full">
+								{/* <ApplyTransition> */}
+								<Apply className="text-transparent" style={{ color: searchText && "var(--gray-800)" }}>
+									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+								</Apply>
+								{/* </ApplyTransition> */}
+							</div>
+						</div>
+
 					</div>
 
 					{/* Contents */}
