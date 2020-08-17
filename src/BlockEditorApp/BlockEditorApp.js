@@ -140,7 +140,7 @@ const BlockEditorApp = () => {
 							<div className="flex flex-row items-center h-full">
 								<ApplyTransition>
 									<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: focused && "var(--blue-500)" }}>
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
 										{/* <svg viewBox="0 0 20 20" fill="currentColor" className="document-search w-6 h-6"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2h-1.528A6 6 0 004 9.528V4z" /><path fillRule="evenodd" d="M8 10a4 4 0 00-3.446 6.032l-1.261 1.26a1 1 0 101.414 1.415l1.261-1.261A4 4 0 108 10zm-2 4a2 2 0 114 0 2 2 0 01-4 0z" clipRule="evenodd" /></svg> */}
 									</Apply>
 								</ApplyTransition>
@@ -163,64 +163,59 @@ const BlockEditorApp = () => {
 
 					{/* Title */}
 					<div className="h-8" />
-					<p className="flex flex-row items-center font-medium text-xs tracking-wider leading-none uppercase truncate text-gray-400">
-						<Apply className="mr-1.5 transform scale-90">
+					<p className="flex flex-row items-center font-semibold text-xs tracking-wider leading-none uppercase truncate text-gray-400">
+						<Apply className="mr-2 transform scale-90">
 							<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
-							{/* <svg viewBox="0 0 20 20" fill="currentColor" className="menu-alt2 w-4 h-4"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" /></svg> */}
 						</Apply>
 						Adele – Hello
 					</p>
 
 					{/* Contents */}
 					<div className="h-4" />
-					<ul className="space-y-3">
-						<li className="font-medium text-sm truncate text-gray-500">
+					<ul className="space-y-2">
+						<li className="font-medium text-sm truncate text-gray-400">
 							Hello, it's me
 						</li>
-						<ul className="space-y-3 pl-3 pb-1.5">
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									I was wondering if after all these years you'd like to meet
-								</p>
-							</li>
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									To go over everything
-								</p>
-							</li>
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									They say that time's supposed to heal ya
-								</p>
-							</li>
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									But I ain't done much healing
-								</p>
-							</li>
-						</ul>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-500">
+							<p className="font-medium text-sm truncate text-gray-400">
+								I was wondering if after all these years you'd like to meet
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								To go over everything
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								They say that time's supposed to heal ya
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								But I ain't done much healing
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
 								Hello, can you hear me?
 							</p>
 						</li>
-						<ul className="space-y-3 pl-3 pb-1.5">
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									I'm in California dreaming about who we used to be
-								</p>
-							</li>
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									When we were younger and free
-								</p>
-							</li>
-							<li>
-								<p className="font-medium text-sm truncate text-gray-500">
-									I've forgotten how it felt before the world fell at our feet
-								</p>
-							</li>
-						</ul>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								I'm in California dreaming about who we used to be
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								When we were younger and free
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								I've forgotten how it felt before the world fell at our feet
+							</p>
+						</li>
 					</ul>
 
 				</aside>
