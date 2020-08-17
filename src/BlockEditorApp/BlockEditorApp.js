@@ -126,7 +126,8 @@ const BlockEditorApp = () => {
 						<div className="px-4 absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
 								<ApplyTransition>
-									<Apply className={!searchText ? "text-gray-300" : "text-gray-800"}>
+									{/* NOTE: Uses text-teal-500 not text-teal-400. */}
+									<Apply className={!searchText ? "text-gray-300" : "text-teal-500"}>
 										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
 										{/* <svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg> */}
 									</Apply>
@@ -158,29 +159,28 @@ const BlockEditorApp = () => {
 
 						{/* Search bar RHS */}
 						{/* {searchText && ( */}
-						{/* <Transition */}
-						{/* 	on={searchText} */}
-						{/* 	className="transition duration-200 ease-in-out" */}
-						{/* 	from="opacity-0 transform scale-0 pointer-events-none" */}
-						{/* 	to="opacity-100 transform scale-100 pointer-events-auto" */}
-						{/* > */}
-						{/* 	<div className="px-4 absolute inset-y-0 right-0"> */}
-						{/* 		<div className="flex flex-row items-center h-full"> */}
-						{/* 			<button */}
-						{/* 				className="-mr-1 p-1 bg-transparent hover:bg-gray-200 rounded-full focus:outline-none" */}
-						{/* 				onClick={e => { */}
-						{/* 					searchInputRef.current.focus() */}
-						{/* 					setSearchText("") */}
-						{/* 				}} */}
-						{/* 				aria-label="Clear search" */}
-						{/* 			> */}
-						{/* 				<Apply className="text-gray-800"> */}
-						{/* 					<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg> */}
-						{/* 				</Apply> */}
-						{/* 			</button> */}
-						{/* 		</div> */}
-						{/* 	</div> */}
-						{/* </Transition> */}
+						<Transition
+							on={searchText}
+							className="transition duration-200 ease-in-out"
+							from="opacity-0 transform scale-0 pointer-events-none"
+							to="opacity-100 transform scale-100 pointer-events-auto"
+						>
+							<div className="px-4 absolute inset-y-0 right-0">
+								<div className="flex flex-row items-center h-full">
+									<button
+										// NOTE: Uses text-teal-500 not text-teal-400.
+										className="-mr-1 p-1 bg-transparent text-teal-500 bg-teal-50 rounded-full focus:outline-none"
+										onClick={e => {
+											searchInputRef.current.focus()
+											setSearchText("")
+										}}
+										aria-label="Clear search"
+									>
+										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg>
+									</button>
+								</div>
+							</div>
+						</Transition>
 						{/* )} */}
 
 					</div>
@@ -190,56 +190,87 @@ const BlockEditorApp = () => {
 					<ul className="space-y-3">
 
 						{/* Header */}
-						<Apply className="flex flex-row items-center">
-							<li className="font-medium text-xs tracking-wider truncate text-gray-400">
-								<Apply className="mr-1.5 transform scale-90">
-									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h7" /></svg>
-								</Apply>
-								{"Adele – Hello".toUpperCase()}
-							</li>
-						</Apply>
+						<li>
+							<Apply className="flex flex-row items-center">
+								<p className="font-medium text-xs tracking-wider truncate text-gray-400">
+									<Apply className="mr-1.5 transform scale-90">
+										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h7" /></svg>
+									</Apply>
+									{"Adele – Hello".toUpperCase()}
+								</p>
+							</Apply>
+						</li>
 
 						{/* Subheaders */}
-						<li className="font-medium text-sm truncate text-gray-400">
-							Hello, it's me
+						<li>
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
+								Hello, it's me
+							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								I was wondering if after all these years you'd like to meet
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								To go over everything
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								They say that time's supposed to heal ya
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								But I ain't done much healing
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								Hello, can you hear me?
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								I'm in California dreaming about who we used to be
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								When we were younger and free
 							</p>
 						</li>
 						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
+							<p
+								className="text-sm truncate text-gray-500"
+								style={{ letterSpacing: "0.0125em" }}
+							>
 								I've forgotten how it felt before the world fell at our feet
 							</p>
 						</li>
@@ -262,7 +293,7 @@ const BlockEditorApp = () => {
 									{/* <span className="text-gray-300"> */}
 									“
 									{/* </span> */}
-									<span className="underline" style={{ textDecorationColor: "var(--gray-300)" }}>
+									<span className="underline" style={{ textDecorationColor: "var(--teal-400)" }}>
 										{searchText.trim()}
 									</span>
 									{/* <span className="text-gray-300"> */}
