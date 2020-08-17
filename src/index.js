@@ -5,6 +5,7 @@ import ReactDOM from "react-dom"
 
 import "stylesheets/tailwind.generated.css"
 import "stylesheets/color-vars.css"
+import "stylesheets/shadow-vars.css"
 
 ReactDOM.render(
 	<BlockEditorApp />,

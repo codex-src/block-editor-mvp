@@ -2,6 +2,8 @@ import disableAutoCorrect from "lib/x/attrs/disableAutoCorrect"
 import React from "react"
 import tw from "./tw"
 
+import "./index.css"
+
 // import uuid from "uuid/v4"
 // import { useImmerReducer } from "use-immer"
 
@@ -123,7 +125,7 @@ const ApplyTransition = ({ children }) => (
 )
 
 const BlockEditorApp = () => {
-	const [focused, setFocused] = React.useState(false)
+	const [text, setText] = React.useState("")
 
 	// const [state, dispatch] = useImmerReducer(TodoAppReducer, initialState)
 
@@ -138,41 +140,24 @@ const BlockEditorApp = () => {
 					<div className="absolute inset-y-0 left-0 pointer-events-none">
 						<div className="flex flex-row items-center h-full">
 							<ApplyTransition>
-								<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: focused && "var(--blue-500)" }}>
+								<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: text && "var(--gray-800)" }}>
 									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-									{/* <svg viewBox="0 0 20 20" fill="currentColor" className="document-search w-6 h-6"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2h-1.528A6 6 0 004 9.528V4z" /><path fillRule="evenodd" d="M8 10a4 4 0 00-3.446 6.032l-1.261 1.26a1 1 0 101.414 1.415l1.261-1.261A4 4 0 108 10zm-2 4a2 2 0 114 0 2 2 0 01-4 0z" clipRule="evenodd" /></svg> */}
 								</Apply>
 							</ApplyTransition>
 						</div>
 					</div>
 					<ApplyTransition>
-						<div
-							className="rounded-full"
-							// shadow-md
-							style={{ boxShadow: focused && "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-						>
-							<ApplyTransition>
-								<div
-									className="rounded-full"
-									// shadow-md
-									style={{ boxShadow: focused && "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-								>
-									<ApplyTransition>
-										<Apply className="bg-gray-100 focus:bg-white border border-transparent focus:border-blue-300 focus:outline-none" style={{ boxShadow: focused && "0 0 0 3px var(--blue-200)" }}>
-											<input
-												className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
-												style={{ paddingLeft: tw(4 + 6 + 2) }}
-												type="text"
-												placeholder="Search"
-												onFocus={e => setFocused(true)}
-												onBlur={e => setFocused(false)}
-												{...disableAutoCorrect}
-											/>
-										</Apply>
-									</ApplyTransition>
-								</div>
-							</ApplyTransition>
-						</div>
+						<Apply className="bg-gray-100 focus:outline-none">
+							<input
+								id="search-input"
+								className="px-6 w-full h-12 text-lg placeholder-gray-400 text-gray-800 rounded-full"
+								style={{ paddingLeft: tw(4 + 6 + 2) }}
+								type="text"
+								placeholder="Search"
+								onChange={e => setText(e.target.value)}
+								{...disableAutoCorrect}
+							/>
+						</Apply>
 					</ApplyTransition>
 				</div>
 
@@ -237,15 +222,15 @@ const BlockEditorApp = () => {
 
 			</aside>
 
-			{/* Main */}
+			{/* <main> */}
 			<div className="flex-shrink-0 hidden lg:block w-12" />
-			<main className="w-full max-w-3xl xl:max-w-2xl bg-red-100">
+			<main className="w-full max-w-3xl xl:max-w-2xl !bg-red-100">
 				hello
 			</main>
 
 			{/* RHS */}
 			<div className="flex-shrink-0 hidden xl:block w-12" />
-			<aside className="flex-shrink-0 hidden xl:block w-64 bg-blue-100" />
+			<aside className="flex-shrink-0 hidden xl:block w-64 !bg-blue-100" />
 
 		</div>
 	)
