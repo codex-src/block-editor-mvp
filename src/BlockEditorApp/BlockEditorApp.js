@@ -117,20 +117,20 @@ const BlockEditorApp = () => {
 
 			{/* LHS */}
 			<Apply className="flex-shrink-0">
-				<div className="hidden lg:block w-48 bg-red-100">
+				<div className="hidden lg:block w-64 bg-red-100">
 					hello
 				</div>
 			</Apply>
 
 			{/* Main */}
-			<div className="flex-shrink-0 hidden lg:block w-16" />
-			<main className="w-full max-w-3xl bg-red-100">
+			<div className="flex-shrink-0 hidden lg:block w-8" />
+			<main className="w-full max-w-2xl bg-red-100">
 				hello
 			</main>
 
 			{/* RHS */}
-			<div className="flex-shrink-0 hidden xl:block w-16" />
-			<div className="hidden xl:block w-48 bg-blue-100" />
+			<div className="flex-shrink-0 hidden xl:block w-8" />
+			<div className="hidden xl:block w-64 bg-blue-100" />
 
 		</div>
 	)
