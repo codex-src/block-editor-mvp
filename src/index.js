@@ -1,12 +1,12 @@
 import * as serviceWorker from "./serviceWorker"
+import BlockEditorApp from "BlockEditorApp"
 import React from "react"
 import ReactDOM from "react-dom"
-import TodoApp from "TodoApp"
 
 import "stylesheets/tailwind.generated.css"
 
 ReactDOM.render(
-	<TodoApp />,
+	<BlockEditorApp />,
 	document.getElementById("root"),
 )
 
