@@ -1,3 +1,4 @@
+import disableAutoCorrect from "lib/x/attrs/disableAutoCorrect"
 import React from "react"
 import tw from "./tw"
 
@@ -152,6 +153,7 @@ const BlockEditorApp = () => {
 									placeholder="Search"
 									onFocus={e => setFocused(true)}
 									onBlur={e => setFocused(false)}
+									{...disableAutoCorrect}
 								/>
 							</Apply>
 						</ApplyTransition>
