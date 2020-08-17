@@ -141,7 +141,7 @@ const BlockEditorApp = () => {
 	return (
 		<Transition
 			on={mounted}
-			className="transition duration-1000 ease-out"
+			className="transition duration-700g ease-out"
 			from="opacity-0 transform -translate-y-4"
 			to="opacity-100 transform translate-y-0"
 		>
@@ -150,7 +150,7 @@ const BlockEditorApp = () => {
 				{/* LHS */}
 				<aside className="flex-shrink-0 hidden lg:block w-64">
 
-					{/* Search */}
+					{/* Search bar */}
 					<div className="relative">
 						<div className="absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
@@ -187,7 +187,7 @@ const BlockEditorApp = () => {
 						</p>
 					</Apply>
 
-					{/* Contents */}
+					{/* Subheaders */}
 					<div className="h-4" />
 					<ul className="space-y-3">
 						<li className="font-medium text-sm truncate text-gray-400">
