@@ -94,10 +94,10 @@ const BlockEditorApp = () => {
 			from="opacity-0 transform -translate-y-4"
 			to="opacity-100 transform translate-y-0"
 		>
-			<div className="px-4 sm:px-6 py-24 flex flex-row justify-center">
+			<div className="px-4 sm:px-6 py-32 flex flex-row justify-center">
 
 				{/* LHS */}
-				<aside className="flex-shrink-0 hidden lg:block w-64">
+				<aside className="flex-shrink-0 hidden md:block w-64">
 
 					{/* Search bar */}
 					<div className="relative">
@@ -187,14 +187,40 @@ const BlockEditorApp = () => {
 				</aside>
 
 				{/* <main> */}
-				<div className="flex-shrink-0 hidden lg:block w-12" />
-				<main className="w-full max-w-3xl xl:max-w-2xl !bg-red-100">
-					hello
+				<div className="flex-shrink-0 hidden md:block w-12" />
+				<main className="w-full max-w-2xl">
+					<p className="text-lg text-gray-800">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut sodales dolor, rutrum gravida dolor. Cras molestie ornare nisl, ac lobortis neque condimentum a. Integer eu purus magna. Morbi nec congue ipsum. Vestibulum sed metus enim. Integer massa nulla, molestie in rutrum non, interdum ac nisl. Duis blandit rhoncus leo in volutpat. Donec placerat ante ut urna accumsan, nec egestas nulla faucibus.
+					</p>
+					<p className="text-lg text-gray-800">
+						<br />
+					</p>
+					<p className="text-lg text-gray-800">
+						Mauris pellentesque sodales ex, ut commodo diam rhoncus a. Proin quis velit risus. Praesent est elit, cursus vitae enim ac, volutpat cursus odio. Nulla vehicula nisi nec diam rhoncus lacinia. Pellentesque mattis nunc at sollicitudin viverra. Ut semper mi nec mauris malesuada lacinia eget id mauris. Quisque condimentum lorem purus. Ut purus nulla, pretium at mi at, porta rhoncus neque. Mauris fermentum diam a lectus sagittis, a ultricies diam pharetra. Integer vulputate arcu porta viverra pretium. Nullam mattis fermentum nisi, in pellentesque lorem suscipit quis.
+					</p>
+					<p className="text-lg text-gray-800">
+						<br />
+					</p>
+					<p className="text-lg text-gray-800">
+						Phasellus sit amet libero lorem. Vivamus non dignissim erat. Duis vel orci ultrices, laoreet mi id, ultrices nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam interdum diam aliquam tortor molestie pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi tristique turpis at placerat porta. Phasellus faucibus odio diam, a bibendum neque volutpat ut. Morbi dictum rhoncus malesuada. Donec commodo nec sapien ut auctor. Ut eget eros sit amet massa egestas commodo a vel erat. Aliquam erat volutpat. Praesent non sodales orci. Suspendisse potenti.
+					</p>
+					<p className="text-lg text-gray-800">
+						<br />
+					</p>
+					<p className="text-lg text-gray-800">
+						Nam vitae tellus malesuada, aliquet elit ut, auctor sapien. Praesent at mi vel metus laoreet sodales. Ut vehicula, odio bibendum mollis imperdiet, nisl tellus iaculis purus, eu ultricies nisi augue a dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ullamcorper enim cursus, consectetur erat nec, viverra dolor. Duis eget commodo ligula, nec finibus massa. Aliquam sed ante in eros fermentum vehicula id vel est. Duis massa turpis, vehicula et neque vitae, laoreet placerat justo. Vivamus id eleifend velit. Nam semper risus ac nunc condimentum commodo. Proin placerat metus a imperdiet convallis. Duis eu quam non nunc condimentum elementum sit amet eget purus. Duis dictum turpis ligula, in pellentesque enim ullamcorper facilisis. Nullam dapibus metus nec metus consectetur, quis sagittis purus eleifend.
+					</p>
+					<p className="text-lg text-gray-800">
+						<br />
+					</p>
+					<p className="text-lg text-gray-800">
+						Pellentesque vestibulum, erat eu facilisis pulvinar, magna diam consequat sem, in bibendum quam ex ac tellus. Vivamus rutrum arcu sem, vestibulum tristique urna porttitor sit amet. Aliquam id consequat ex. Morbi dignissim dolor sit amet justo dapibus, ac lacinia elit mattis. Quisque varius imperdiet massa ac molestie. Cras sed eros odio. Duis vulputate scelerisque est vulputate sollicitudin. Duis tincidunt, quam quis feugiat porta, quam ipsum malesuada nisi, in posuere orci enim sed purus.
+					</p>
 				</main>
 
 				{/* RHS */}
 				<div className="flex-shrink-0 hidden xl:block w-12" />
-				<aside className="flex-shrink-0 hidden xl:block w-64 !bg-blue-100" />
+				<aside className="flex-shrink-0 hidden xl:block w-64" />
 
 			</div>
 		</Transition>
