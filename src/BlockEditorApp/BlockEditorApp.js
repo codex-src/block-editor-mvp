@@ -115,7 +115,7 @@ const BlockEditorApp = () => {
 							</div>
 						</div>
 
-						{/* <input> */}
+						{/* <input type="text"> */}
 						<ApplyTransition>
 							<Apply className="bg-gray-100 focus:outline-none">
 								<input
@@ -124,6 +124,7 @@ const BlockEditorApp = () => {
 									style={{ padding: `0 ${tw(4 + 5 + 2)}` }}
 									type="text"
 									placeholder="Search"
+									value={searchText}
 									onChange={e => setSearchText(e.target.value)}
 									{...disableAutoCorrect}
 								/>
@@ -131,13 +132,24 @@ const BlockEditorApp = () => {
 						</ApplyTransition>
 
 						{/* Search bar RHS */}
-						<div className="px-4 absolute inset-y-0 right-0 pointer-events-none" style={{ pointerEvents: searchText && "auto" }}>
-							<div className="flex flex-row items-center h-full">
-								<Apply className="text-transparent" style={{ color: searchText && "var(--gray-800)" }}>
-									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
-								</Apply>
-							</div>
-						</div>
+						<Apply className="focus:outline-none">
+							<button
+								className="px-4 absolute inset-y-0 right-0 pointer-events-none"
+								style={{ pointerEvents: searchText && "auto" }}
+								onClick={e => {
+									const el = document.getElementById("search-bar")
+									el.focus()
+									setSearchText("")
+								}}
+								aria-label="Clear search"
+							>
+								<div className="flex flex-row items-center h-full">
+									<Apply className="text-transparent" style={{ color: searchText && "var(--gray-800)" }}>
+										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+									</Apply>
+								</div>
+							</button>
+						</Apply>
 
 					</div>
 
