@@ -2,9 +2,9 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 const defaultVariants = require("./tailwind-defaultVariants")
 
-// function trimWhitespace(str) {
-// 	return str.split(/\s+/).join(" ").trim()
-// }
+function trimWhitespace(str) {
+	return str.split(/\s+/).join(" ").trim()
+}
 
 module.exports = {
 	purge: [
@@ -17,36 +17,30 @@ module.exports = {
 				"75": "0.75rem",
 			},
 			boxShadow: {
-				"solid-indigo": "0 0 0 3px #6875f5",
-
-				// "hero-sm": trimWhitespace(`
-				// 	0 0 0 1px rgba(0, 0, 0, 0.05),
-				// 	0 1px 2px 0 rgba(0, 0, 0, 0.05)
-				// `),
-				// "hero": trimWhitespace(`
-				// 	0 0 0 1px rgba(0, 0, 0, 0.05),
-				// 	0 1px 3px 0 rgba(0, 0, 0, 0.1),
-				// 	0 1px 2px 0 rgba(0, 0, 0, 0.06)
-				// `),
-				// "hero-md": trimWhitespace(`
-				// 	0 0 0 1px rgba(0, 0, 0, 0.05),
-				// 	0 4px 6px -1px rgba(0, 0, 0, 0.1),
-				// 	0 2px 4px -1px rgba(0, 0, 0, 0.06)
-				// `),
-				// "hero-lg": trimWhitespace(`
-				// 	0 0 0 1px rgba(0, 0, 0, 0.05),
-				// 	0 10px 15px -3px rgba(0, 0, 0, 0.1),
-				// 	0 4px 6px -2px rgba(0, 0, 0, 0.05)
-				// `),
-				// "hero-xl": trimWhitespace(`
-				// 	0 0 0 1px rgba(0, 0, 0, 0.05),
-				// 	0 20px 25px -5px rgba(0, 0, 0, 0.1),
-				// 	0 10px 10px -5px rgba(0, 0, 0, 0.04)
-				// `),
-				// "hero-2xl": trimWhitespace(`
-				// 	0 0 0 1px rgba(0, 0, 0, 0.05),
-				// 	0 25px 50px -12px rgba(0, 0, 0, 0.25)
-				// `),
+				"hero-sm": trimWhitespace(`
+					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.sm}
+				`),
+				"hero": trimWhitespace(`
+					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.default}
+				`),
+				"hero-md": trimWhitespace(`
+					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.md}
+				`),
+				"hero-lg": trimWhitespace(`
+					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.lg}
+				`),
+				"hero-xl": trimWhitespace(`
+					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xl}
+				`),
+				"hero-2xl": trimWhitespace(`
+					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow["2xl"]}
+				`),
 			},
 			fontFamily: {
 				/* eslint-disable quotes */

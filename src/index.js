@@ -4,6 +4,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 import "stylesheets/tailwind.generated.css"
+import "stylesheets/color-vars.css"
 
 ReactDOM.render(
 	<BlockEditorApp />,
