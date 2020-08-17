@@ -148,6 +148,7 @@ const BlockEditorApp = () => {
 										paddingLeft: !searchText && tw(6 + 5 + 2), //  tw(4 /* px-4 */ + 5 /* w-5 h-5 */ + 2),
 										paddingRight: tw(4 /* px-4 */ + 1 /* p-1 */ + 4 /* w-4 h-4 */ + 1 /* p-1 */ + 2),
 										fontSize: tw(4.25),
+										// borderRadius: tw(3.5),
 									}}
 									type="text"
 									placeholder="Search"
