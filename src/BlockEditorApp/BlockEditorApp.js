@@ -82,6 +82,14 @@ const BlockEditorApp = () => {
 	// 	}, 200)
 	// }, [])
 
+	const searchInputRef = React.useRef(null)
+	const searchHeaderRef = React.useRef(null)
+
+	React.useLayoutEffect(() => {
+		const nudge = (searchHeaderRef.current.offsetHeight - searchInputRef.current.offsetHeight) / 2
+		searchHeaderRef.current.style.marginTop = (-searchInputRef.current.offsetHeight + -nudge) + "px"
+	}, [])
+
 	const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
 
 	// TODO: Move to reducer or use local state?
@@ -119,7 +127,8 @@ const BlockEditorApp = () => {
 						<ApplyTransition>
 							<Apply className="bg-gray-100 focus:outline-none">
 								<input
-									id="search-bar"
+									// id="search-bar"
+									ref={searchInputRef}
 									className="px-4 w-full h-10 text-gray-800 rounded-full"
 									style={{ padding: `0 ${tw(4 + 5 + 2)}` }}
 									type="text"
@@ -220,6 +229,21 @@ const BlockEditorApp = () => {
 			{/* <main> */}
 			<div className="flex-shrink-0 hidden md:block w-12" />
 			<main className="w-full max-w-2xl">
+
+				<div className="relative">
+					{/* NOTE: Uses -mt-20 to emulate flex flex-row align-baseline. */}
+					{/* <div className="-mt-20 absolute top-0"> */}
+					{/* 	<h1 className="font-bold text-3xl"> */}
+					{/* 		Searching “Hello, world!” */}
+					{/* 	</h1> */}
+					{/* </div> */}
+					<div className="-mt-8 absolute top-0">
+						<h1 ref={searchHeaderRef} className="font-bold text-3xl">
+							Searching “Hello, world!”
+						</h1>
+					</div>
+				</div>
+
 				<FakeContent />
 			</main>
 
