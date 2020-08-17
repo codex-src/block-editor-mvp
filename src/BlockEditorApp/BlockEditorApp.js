@@ -1,6 +1,7 @@
 import Apply from "lib/x/Apply"
 import ApplyTransition from "lib/x/ApplyTransition"
 import disableAutoCorrect from "lib/x/disableAutoCorrect"
+import DocumentTitle from "lib/x/DocumentTitle"
 import React from "react"
 import Transition from "lib/x/Transition"
 import tw from "./tw"
@@ -79,8 +80,10 @@ const BlockEditorApp = () => {
 	const searchInputRef = React.useRef(null)
 	const searchHeaderRef = React.useRef(null)
 
+	const [scrollYBeforeSearchText, setScrollYBeforeSearchText] = React.useState(0)
 	const [searchText, setSearchText] = React.useState("")
 
+	// Effect for simulating flex flex-row items-baseline.
 	React.useLayoutEffect(() => {
 		if (!searchText) {
 			// No-op
@@ -90,6 +93,23 @@ const BlockEditorApp = () => {
 		searchHeaderRef.current.style.marginTop = (-searchInputRef.current.offsetHeight + -nudge) + "px"
 	}, [searchText])
 
+	// Effect for auto-scrolling on searchText.
+	React.useEffect(() => {
+		if ([...searchText].length <= 1 && window.scrollY) {
+			setScrollYBeforeSearchText(window.scrollY)
+		}
+
+		const id = setTimeout(() => {
+			if (!searchText) {
+				window.scrollTo(0, scrollYBeforeSearchText)
+			} else {
+				window.scrollTo(0, 0)
+			}
+		}, 200)
+		return () => {
+			clearTimeout(id)
+		}
+	}, [searchText])
 
 	// NOTE: Uses items-start because of sticky top-0.
 	return (
@@ -122,11 +142,7 @@ const BlockEditorApp = () => {
 									type="text"
 									placeholder="Search"
 									value={searchText}
-									onChange={e => {
-										// TODO: Should restore the scroll position before onChange.
-										window.scrollTo(0, 0)
-										setSearchText(e.target.value)
-									}}
+									onChange={e => setSearchText(e.target.value)}
 									{...disableAutoCorrect}
 								/>
 							</Apply>
@@ -225,9 +241,11 @@ const BlockEditorApp = () => {
 				{searchText && (
 					<div className="relative">
 						<div className="-mt-8 absolute top-0">
-							<h1 ref={searchHeaderRef} className="font-bold text-3xl text-gray-800">
-								Searching “{searchText}”
-							</h1>
+							<DocumentTitle title={`Searching “${searchText}”`}>
+								<h1 ref={searchHeaderRef} className="font-bold text-3xl text-gray-800">
+									Searching “{searchText}”
+								</h1>
+							</DocumentTitle>
 						</div>
 					</div>
 				)}

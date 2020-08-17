@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth;
+}
+
 /* #search-bar::placeholder, */
 /* #search-bar:focus::placeholder { */
 /* 	transition-property: color; */
