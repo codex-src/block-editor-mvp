@@ -74,13 +74,13 @@ function BlockEditorReducer(state, action) {
 }
 
 const BlockEditorApp = () => {
-	const [mounted, setMounted] = React.useState(false)
-
-	React.useEffect(() => {
-		setTimeout(() => {
-			setMounted(true)
-		}, 200)
-	}, [])
+	// const [mounted, setMounted] = React.useState(false)
+	//
+	// React.useEffect(() => {
+	// 	setTimeout(() => {
+	// 		setMounted(true)
+	// 	}, 200)
+	// }, [])
 
 	const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
 
@@ -88,142 +88,169 @@ const BlockEditorApp = () => {
 	const [searchText, setSearchText] = React.useState("")
 
 	return (
-		<Transition
-			on={mounted}
-			className="transition duration-700g ease-out"
-			from="opacity-0 transform -translate-y-4"
-			to="opacity-100 transform translate-y-0"
-		>
-			<div className="px-4 sm:px-6 py-32 flex flex-row justify-center">
+		// <Transition
+		// 	on={mounted}
+		// 	className="transition duration-700 ease-out"
+		// 	from="opacity-0 transform -translate-y-4"
+		// 	to="opacity-100 transform translate-y-0"
+		// >
+		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center">
 
-				{/* LHS */}
-				<aside className="flex-shrink-0 hidden md:block w-64">
+			{/* LHS */}
+			<aside className="flex-shrink-0 hidden md:block w-64">
 
-					{/* Search bar */}
-					<div className="relative">
-						<div className="absolute inset-y-0 left-0 pointer-events-none">
-							<div className="flex flex-row items-center h-full">
-								<ApplyTransition>
-									<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: searchText && "var(--gray-800)" }}>
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-									</Apply>
-								</ApplyTransition>
-							</div>
+				{/* Search bar */}
+				<div className="relative">
+					<div className="absolute inset-y-0 left-0 pointer-events-none">
+						<div className="flex flex-row items-center h-full">
+							<ApplyTransition>
+								<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: searchText && "var(--gray-800)" }}>
+									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+								</Apply>
+							</ApplyTransition>
 						</div>
-						<ApplyTransition>
-							<Apply className="bg-gray-100 focus:outline-none">
-								<input
-									id="search-bar"
-									className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
-									style={{ paddingLeft: tw(4 + 6 + 2) }}
-									type="text"
-									placeholder="Search"
-									onChange={e => setSearchText(e.target.value)}
-									{...disableAutoCorrect}
-								/>
-							</Apply>
-						</ApplyTransition>
 					</div>
+					<ApplyTransition>
+						<Apply className="bg-gray-100 focus:outline-none">
+							<input
+								id="search-bar"
+								className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
+								style={{ paddingLeft: tw(4 + 6 + 2) }}
+								type="text"
+								placeholder="Search"
+								onChange={e => setSearchText(e.target.value)}
+								{...disableAutoCorrect}
+							/>
+						</Apply>
+					</ApplyTransition>
+				</div>
 
-					{/* Header */}
-					<div className="h-8" />
-					<Apply className="flex flex-row items-center">
-						<p className="font-semibold text-xs tracking-wider truncate text-gray-400">
-							<Apply className="mr-2 transform scale-90">
-								<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
-							</Apply>
-							{"Adele – Hello".toUpperCase()}
+				{/* Header */}
+				<div className="h-8" />
+				<Apply className="flex flex-row items-center">
+					<p className="font-semibold text-xs tracking-wider truncate text-gray-400">
+						<Apply className="mr-2 transform scale-90">
+							<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
+						</Apply>
+						{"Adele – Hello".toUpperCase()}
+					</p>
+				</Apply>
+
+				{/* Subheaders */}
+				<div className="h-4" />
+				<ul className="space-y-3">
+					<li className="font-medium text-sm truncate text-gray-400">
+						Hello, it's me
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							I was wondering if after all these years you'd like to meet
 						</p>
-					</Apply>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							To go over everything
+						</p>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							They say that time's supposed to heal ya
+						</p>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							But I ain't done much healing
+						</p>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							Hello, can you hear me?
+						</p>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							I'm in California dreaming about who we used to be
+						</p>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							When we were younger and free
+						</p>
+					</li>
+					<li>
+						<p className="font-medium text-sm truncate text-gray-400">
+							I've forgotten how it felt before the world fell at our feet
+						</p>
+					</li>
+				</ul>
 
-					{/* Subheaders */}
-					<div className="h-4" />
-					<ul className="space-y-3">
-						<li className="font-medium text-sm truncate text-gray-400">
-							Hello, it's me
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								I was wondering if after all these years you'd like to meet
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								To go over everything
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								They say that time's supposed to heal ya
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								But I ain't done much healing
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								Hello, can you hear me?
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								I'm in California dreaming about who we used to be
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								When we were younger and free
-							</p>
-						</li>
-						<li>
-							<p className="font-medium text-sm truncate text-gray-400">
-								I've forgotten how it felt before the world fell at our feet
-							</p>
-						</li>
-					</ul>
+			</aside>
 
-				</aside>
+			{/* <main> */}
+			<div className="flex-shrink-0 hidden md:block w-12" />
+			<main className="w-full max-w-2xl">
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25) }}
+				>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut sodales dolor, rutrum gravida dolor. Cras molestie ornare nisl, ac lobortis neque condimentum a. Integer eu purus magna. Morbi nec congue ipsum. Vestibulum sed metus enim. Integer massa nulla, molestie in rutrum non, interdum ac nisl. Duis blandit rhoncus leo in volutpat. Donec placerat ante ut urna accumsan, nec egestas nulla faucibus.
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25), lineHeight: 1 }}
+				>
+					<br />
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25) }}
+				>
+					Mauris pellentesque sodales ex, ut commodo diam rhoncus a. Proin quis velit risus. Praesent est elit, cursus vitae enim ac, volutpat cursus odio. Nulla vehicula nisi nec diam rhoncus lacinia. Pellentesque mattis nunc at sollicitudin viverra. Ut semper mi nec mauris malesuada lacinia eget id mauris. Quisque condimentum lorem purus. Ut purus nulla, pretium at mi at, porta rhoncus neque. Mauris fermentum diam a lectus sagittis, a ultricies diam pharetra. Integer vulputate arcu porta viverra pretium. Nullam mattis fermentum nisi, in pellentesque lorem suscipit quis.
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25), lineHeight: 1 }}
+				>
+					<br />
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25) }}
+				>
+					Phasellus sit amet libero lorem. Vivamus non dignissim erat. Duis vel orci ultrices, laoreet mi id, ultrices nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam interdum diam aliquam tortor molestie pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi tristique turpis at placerat porta. Phasellus faucibus odio diam, a bibendum neque volutpat ut. Morbi dictum rhoncus malesuada. Donec commodo nec sapien ut auctor. Ut eget eros sit amet massa egestas commodo a vel erat. Aliquam erat volutpat. Praesent non sodales orci. Suspendisse potenti.
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25), lineHeight: 1 }}
+				>
+					<br />
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25) }}
+				>
+					Nam vitae tellus malesuada, aliquet elit ut, auctor sapien. Praesent at mi vel metus laoreet sodales. Ut vehicula, odio bibendum mollis imperdiet, nisl tellus iaculis purus, eu ultricies nisi augue a dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ullamcorper enim cursus, consectetur erat nec, viverra dolor. Duis eget commodo ligula, nec finibus massa. Aliquam sed ante in eros fermentum vehicula id vel est. Duis massa turpis, vehicula et neque vitae, laoreet placerat justo. Vivamus id eleifend velit. Nam semper risus ac nunc condimentum commodo. Proin placerat metus a imperdiet convallis. Duis eu quam non nunc condimentum elementum sit amet eget purus. Duis dictum turpis ligula, in pellentesque enim ullamcorper facilisis. Nullam dapibus metus nec metus consectetur, quis sagittis purus eleifend.
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25), lineHeight: 1 }}
+				>
+					<br />
+				</p>
+				<p
+					className="leading-relaxed text-gray-800"
+					style={{ fontSize: tw(4.25) }}
+				>
+					Pellentesque vestibulum, erat eu facilisis pulvinar, magna diam consequat sem, in bibendum quam ex ac tellus. Vivamus rutrum arcu sem, vestibulum tristique urna porttitor sit amet. Aliquam id consequat ex. Morbi dignissim dolor sit amet justo dapibus, ac lacinia elit mattis. Quisque varius imperdiet massa ac molestie. Cras sed eros odio. Duis vulputate scelerisque est vulputate sollicitudin. Duis tincidunt, quam quis feugiat porta, quam ipsum malesuada nisi, in posuere orci enim sed purus.
+				</p>
+			</main>
 
-				{/* <main> */}
-				<div className="flex-shrink-0 hidden md:block w-12" />
-				<main className="w-full max-w-2xl">
-					<p className="text-lg text-gray-800">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut sodales dolor, rutrum gravida dolor. Cras molestie ornare nisl, ac lobortis neque condimentum a. Integer eu purus magna. Morbi nec congue ipsum. Vestibulum sed metus enim. Integer massa nulla, molestie in rutrum non, interdum ac nisl. Duis blandit rhoncus leo in volutpat. Donec placerat ante ut urna accumsan, nec egestas nulla faucibus.
-					</p>
-					<p className="text-lg text-gray-800">
-						<br />
-					</p>
-					<p className="text-lg text-gray-800">
-						Mauris pellentesque sodales ex, ut commodo diam rhoncus a. Proin quis velit risus. Praesent est elit, cursus vitae enim ac, volutpat cursus odio. Nulla vehicula nisi nec diam rhoncus lacinia. Pellentesque mattis nunc at sollicitudin viverra. Ut semper mi nec mauris malesuada lacinia eget id mauris. Quisque condimentum lorem purus. Ut purus nulla, pretium at mi at, porta rhoncus neque. Mauris fermentum diam a lectus sagittis, a ultricies diam pharetra. Integer vulputate arcu porta viverra pretium. Nullam mattis fermentum nisi, in pellentesque lorem suscipit quis.
-					</p>
-					<p className="text-lg text-gray-800">
-						<br />
-					</p>
-					<p className="text-lg text-gray-800">
-						Phasellus sit amet libero lorem. Vivamus non dignissim erat. Duis vel orci ultrices, laoreet mi id, ultrices nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam interdum diam aliquam tortor molestie pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi tristique turpis at placerat porta. Phasellus faucibus odio diam, a bibendum neque volutpat ut. Morbi dictum rhoncus malesuada. Donec commodo nec sapien ut auctor. Ut eget eros sit amet massa egestas commodo a vel erat. Aliquam erat volutpat. Praesent non sodales orci. Suspendisse potenti.
-					</p>
-					<p className="text-lg text-gray-800">
-						<br />
-					</p>
-					<p className="text-lg text-gray-800">
-						Nam vitae tellus malesuada, aliquet elit ut, auctor sapien. Praesent at mi vel metus laoreet sodales. Ut vehicula, odio bibendum mollis imperdiet, nisl tellus iaculis purus, eu ultricies nisi augue a dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ullamcorper enim cursus, consectetur erat nec, viverra dolor. Duis eget commodo ligula, nec finibus massa. Aliquam sed ante in eros fermentum vehicula id vel est. Duis massa turpis, vehicula et neque vitae, laoreet placerat justo. Vivamus id eleifend velit. Nam semper risus ac nunc condimentum commodo. Proin placerat metus a imperdiet convallis. Duis eu quam non nunc condimentum elementum sit amet eget purus. Duis dictum turpis ligula, in pellentesque enim ullamcorper facilisis. Nullam dapibus metus nec metus consectetur, quis sagittis purus eleifend.
-					</p>
-					<p className="text-lg text-gray-800">
-						<br />
-					</p>
-					<p className="text-lg text-gray-800">
-						Pellentesque vestibulum, erat eu facilisis pulvinar, magna diam consequat sem, in bibendum quam ex ac tellus. Vivamus rutrum arcu sem, vestibulum tristique urna porttitor sit amet. Aliquam id consequat ex. Morbi dignissim dolor sit amet justo dapibus, ac lacinia elit mattis. Quisque varius imperdiet massa ac molestie. Cras sed eros odio. Duis vulputate scelerisque est vulputate sollicitudin. Duis tincidunt, quam quis feugiat porta, quam ipsum malesuada nisi, in posuere orci enim sed purus.
-					</p>
-				</main>
+			{/* RHS */}
+			<div className="flex-shrink-0 hidden xl:block w-12" />
+			<aside className="flex-shrink-0 hidden xl:block w-64" />
 
-				{/* RHS */}
-				<div className="flex-shrink-0 hidden xl:block w-12" />
-				<aside className="flex-shrink-0 hidden xl:block w-64" />
-
-			</div>
-		</Transition>
+		</div>
+		// </Transition>
 	)
 }
 
