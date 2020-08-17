@@ -13,9 +13,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
-			borderRadius: {
-				"75": "0.75rem",
-			},
+			// borderRadius: {
+			// 	"75": "0.75rem",
+			// },
 			boxShadow: {
 				"hero-sm": trimWhitespace(`
 					${defaultTheme.boxShadow.xs},

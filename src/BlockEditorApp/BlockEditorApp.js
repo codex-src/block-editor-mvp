@@ -116,7 +116,7 @@ const BlockEditorApp = () => {
 		<div className="px-4 sm:px-6 py-48 flex flex-row justify-center items-start">
 
 			{/* LHS */}
-			<Apply className="-mt-48 sticky top-0" style={{ paddingTop: tw(30) }}>
+			<Apply className="-mt-48 sticky top-0" style={{ paddingTop: tw(48 - 12 /* Search bar */ - 8 /* h-8 */) }}>
 				<aside className="flex-shrink-0 hidden md:block w-64">
 
 					{/* Search bar */}
@@ -125,20 +125,28 @@ const BlockEditorApp = () => {
 						{/* Search bar LHS */}
 						<div className="px-4 absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
-								<Apply className="text-gray-400" style={{ color: searchText && "var(--gray-800)" }}>
-									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-								</Apply>
+								<ApplyTransition>
+									<Apply className={!searchText ? "text-gray-300" : "text-gray-800"}>
+										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+										{/* <svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg> */}
+									</Apply>
+								</ApplyTransition>
 							</div>
 						</div>
 
 						{/* <input type="text"> */}
 						<ApplyTransition>
-							<Apply className="bg-gray-100 focus:outline-none">
+							{/* <Apply className={!searchText ? "bg-gray-100" : "bg-white border border-gray-200"}> */}
+							<Apply className={!searchText ? "bg-gray-100" : "bg-white shadow-hero"}>
 								<input
 									id="search-bar"
 									ref={searchInputRef}
-									className="px-4 w-full h-10 text-gray-800 rounded-full"
-									style={{ padding: `0 ${tw(4 + 5 + 2)}` }}
+									className="px-4 w-full h-12 text-gray-800 rounded-full focus:outline-none"
+									style={{
+										paddingLeft: tw(4 /* px-4 */ + 5 /* w-5 h-5 */ + 2),
+										// paddingRight: tw(4 /* px-4 */ + 1 /* p-1 */ + 4 /* w-4 h-4 */ + 1 /* p-1 */ + 2),
+										fontSize: tw(4.25),
+									}}
 									type="text"
 									placeholder="Search"
 									value={searchText}
@@ -149,24 +157,31 @@ const BlockEditorApp = () => {
 						</ApplyTransition>
 
 						{/* Search bar RHS */}
-						<Apply className="focus:outline-none">
-							<button
-								className="px-4 absolute inset-y-0 right-0 pointer-events-none"
-								style={{ pointerEvents: searchText && "auto" }}
-								onClick={e => {
-									const el = document.getElementById("search-bar")
-									el.focus()
-									setSearchText("")
-								}}
-								aria-label="Clear search"
-							>
-								<div className="flex flex-row items-center h-full">
-									<Apply className="text-transparent" style={{ color: searchText && "var(--gray-800)" }}>
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
-									</Apply>
-								</div>
-							</button>
-						</Apply>
+						{/* {searchText && ( */}
+						{/* <Transition */}
+						{/* 	on={searchText} */}
+						{/* 	className="transition duration-200 ease-in-out" */}
+						{/* 	from="opacity-0 transform scale-0 pointer-events-none" */}
+						{/* 	to="opacity-100 transform scale-100 pointer-events-auto" */}
+						{/* > */}
+						{/* 	<div className="px-4 absolute inset-y-0 right-0"> */}
+						{/* 		<div className="flex flex-row items-center h-full"> */}
+						{/* 			<button */}
+						{/* 				className="-mr-1 p-1 bg-transparent hover:bg-gray-200 rounded-full focus:outline-none" */}
+						{/* 				onClick={e => { */}
+						{/* 					searchInputRef.current.focus() */}
+						{/* 					setSearchText("") */}
+						{/* 				}} */}
+						{/* 				aria-label="Clear search" */}
+						{/* 			> */}
+						{/* 				<Apply className="text-gray-800"> */}
+						{/* 					<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg> */}
+						{/* 				</Apply> */}
+						{/* 			</button> */}
+						{/* 		</div> */}
+						{/* 	</div> */}
+						{/* </Transition> */}
+						{/* )} */}
 
 					</div>
 
@@ -177,8 +192,8 @@ const BlockEditorApp = () => {
 						{/* Header */}
 						<Apply className="flex flex-row items-center">
 							<li className="font-medium text-xs tracking-wider truncate text-gray-400">
-								<Apply className="mr-2 transform scale-90">
-									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
+								<Apply className="mr-1.5 transform scale-90">
+									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h7" /></svg>
 								</Apply>
 								{"Adele – Hello".toUpperCase()}
 							</li>
@@ -240,17 +255,17 @@ const BlockEditorApp = () => {
 
 				{searchText && (
 					<div className="relative">
-						<div className="-mt-8 absolute top-0">
+						<div className="-mt-8 absolute top-0 inset-x-0">
 							<DocumentTitle title={`Searching “${searchText}”`}>
-								<h1 ref={searchHeaderRef} className="font-bold text-3xl text-gray-800">
+								<h1 ref={searchHeaderRef} className="font-bold text-4xl truncate text-gray-800">
 									Searching{" "}
-									{/* <span className="text-gray-400"> */}
+									{/* <span className="text-gray-300"> */}
 									“
 									{/* </span> */}
 									<span className="underline" style={{ textDecorationColor: "var(--gray-300)" }}>
 										{searchText.trim()}
 									</span>
-									{/* <span className="text-gray-400"> */}
+									{/* <span className="text-gray-300"> */}
 									”
 									{/* </span> */}
 								</h1>
