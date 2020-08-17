@@ -1,129 +1,77 @@
+import Apply from "lib/x/Apply"
+import ApplyTransition from "lib/x/ApplyTransition"
 import disableAutoCorrect from "lib/x/disableAutoCorrect"
 import React from "react"
 import Transition from "lib/x/Transition"
 import tw from "./tw"
+import uuid from "uuid/v4"
+import { useImmerReducer } from "use-immer"
 
 import "./index.css"
 
-// import uuid from "uuid/v4"
-// import { useImmerReducer } from "use-immer"
+const initialState = {
+	// form: {
+	// 	done: false,
+	// 	text: "",
+	// },
+	// todos: [],
+}
 
-// const initialState = {
-// 	form: {
-// 		done: false,
-// 		text: "",
-// 	},
-// 	todos: [],
-// }
+const actions = state => ({
+	// toggleNextTodo() {
+	// 	state.form.done = !state.form.done
+	// },
+	// updateNextTodo(text) {
+	// 	state.form.text = text
+	// },
+	// appendNextTodo() {
+	// 	if (!state.form.text) {
+	// 		return
+	// 	}
+	// 	state.todos.unshift({
+	// 		id: uuid(),
+	// 		...state.form,
+	// 	})
+	// 	state.form.text = ""
+	// },
+	// toggleTodoByID(id) {
+	// 	const todo = state.todos.find(each => each.id === id)
+	// 	todo.done = !todo.done
+	// },
+	// updateTodoByID(id, text) {
+	// 	const todo = state.todos.find(each => each.id === id)
+	// 	todo.text = text
+	// },
+	// deleteTodoByID(id) {
+	// 	const x = state.todos.findIndex(each => each.id === id)
+	// 	state.todos.splice(x, 1)
+	// },
+})
 
-// const actions = state => ({
-// 	toggleNextTodo() {
-// 		state.form.done = !state.form.done
-// 	},
-// 	updateNextTodo(text) {
-// 		state.form.text = text
-// 	},
-// 	appendNextTodo() {
-// 		if (!state.form.text) {
-// 			return
-// 		}
-// 		state.todos.unshift({
-// 			id: uuid(),
-// 			...state.form,
-// 		})
-// 		state.form.text = ""
-// 	},
-// 	toggleTodoByID(id) {
-// 		const todo = state.todos.find(each => each.id === id)
-// 		todo.done = !todo.done
-// 	},
-// 	updateTodoByID(id, text) {
-// 		const todo = state.todos.find(each => each.id === id)
-// 		todo.text = text
-// 	},
-// 	deleteTodoByID(id) {
-// 		const x = state.todos.findIndex(each => each.id === id)
-// 		state.todos.splice(x, 1)
-// 	},
-// })
-
-// function TodoAppReducer(state, action) {
-// 	switch (action.type) {
-// 	case "TOGGLE_NEXT_TODO":
-// 		actions(state).toggleNextTodo()
-// 		return
-// 	case "UPDATE_NEXT_TODO":
-// 		actions(state).updateNextTodo(action.text)
-// 		return
-// 	case "APPEND_NEXT_TODO":
-// 		actions(state).appendNextTodo()
-// 		return
-// 	case "TOGGLE_TODO_BY_ID":
-// 		actions(state).toggleTodoByID(action.id)
-// 		return
-// 	case "UPDATE_TODO_BY_ID":
-// 		actions(state).updateTodoByID(action.id, action.text)
-// 		return
-// 	case "DELETE_TODO_BY_ID":
-// 		actions(state).deleteTodoByID(action.id)
-// 		return
-// 	default:
-// 		throw new Error(`TodoAppReducer: action mismatch; action=${action}`)
-// 	}
-// }
-
-// const MemoTodoItem = React.memo(({ todo, dispatch }) => (
-// 	<div id={todo.id}>
-// 		<input
-// 			type="checkbox"
-// 			checked={todo.done}
-// 			onChange={e => {
-// 				dispatch({
-// 					type: "TOGGLE_TODO_BY_ID",
-// 					id: todo.id,
-// 				})
-// 			}}
-// 		/>
-// 		<input
-// 			type="text"
-// 			value={todo.text}
-// 			onChange={e => {
-// 				dispatch({
-// 					type: "UPDATE_TODO_BY_ID",
-// 					id: todo.id,
-// 					text: e.target.value,
-// 				})
-// 			}}
-// 		/>
-// 		<button
-// 			onClick={e => {
-// 				dispatch({
-// 					type: "DELETE_TODO_BY_ID",
-// 					id: todo.id,
-// 				})
-// 			}}
-// 		>
-// 			Delete
-// 		</button>
-// 	</div>
-// ))
-
-const Apply = ({ className, style, children }) => (
-	React.cloneElement(children, {
-		...children.props,
-		className: className + (!children.props.className ? "" : " " + children.props.className),
-		style: {
-			...style,
-			...children.props.style,
-		},
-	})
-)
-
-const ApplyTransition = ({ children }) => (
-	<Apply className="transition duration-200 ease-in-out">
-		{children}
-	</Apply>
-)
+function BlockEditorReducer(state, action) {
+	// switch (action.type) {
+	// case "TOGGLE_NEXT_TODO":
+	// 	actions(state).toggleNextTodo()
+	// 	return
+	// case "UPDATE_NEXT_TODO":
+	// 	actions(state).updateNextTodo(action.text)
+	// 	return
+	// case "APPEND_NEXT_TODO":
+	// 	actions(state).appendNextTodo()
+	// 	return
+	// case "TOGGLE_TODO_BY_ID":
+	// 	actions(state).toggleTodoByID(action.id)
+	// 	return
+	// case "UPDATE_TODO_BY_ID":
+	// 	actions(state).updateTodoByID(action.id, action.text)
+	// 	return
+	// case "DELETE_TODO_BY_ID":
+	// 	actions(state).deleteTodoByID(action.id)
+	// 	return
+	// default:
+	// 	throw new Error(`BlockEditorReducer: action mismatch; action=${action}`)
+	// }
+}
 
 const BlockEditorApp = () => {
 	const [mounted, setMounted] = React.useState(false)
@@ -134,9 +82,10 @@ const BlockEditorApp = () => {
 		}, 200)
 	}, [])
 
-	const [text, setText] = React.useState("")
+	const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
 
-	// const [state, dispatch] = useImmerReducer(TodoAppReducer, initialState)
+	// TODO: Move to reducer or use local state?
+	const [searchText, setSearchText] = React.useState("")
 
 	return (
 		<Transition
@@ -155,7 +104,7 @@ const BlockEditorApp = () => {
 						<div className="absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
 								<ApplyTransition>
-									<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: text && "var(--gray-800)" }}>
+									<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: searchText && "var(--gray-800)" }}>
 										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
 									</Apply>
 								</ApplyTransition>
@@ -169,7 +118,7 @@ const BlockEditorApp = () => {
 									style={{ paddingLeft: tw(4 + 6 + 2) }}
 									type="text"
 									placeholder="Search"
-									onChange={e => setText(e.target.value)}
+									onChange={e => setSearchText(e.target.value)}
 									{...disableAutoCorrect}
 								/>
 							</Apply>
