@@ -134,7 +134,7 @@ const BlockEditorApp = () => {
 				<aside className="hidden lg:block w-64">
 
 					<div className="relative">
-						<div className="absolute inset-y-0 left-0">
+						<div className="absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
 								<ApplyTransition>
 									<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: focused && "var(--blue-400)" }}>
@@ -144,14 +144,16 @@ const BlockEditorApp = () => {
 							</div>
 						</div>
 						<ApplyTransition>
-							<input
-								className="px-6 form-input w-full h-12 text-lg text-gray-800 bg-gray-100 focus:bg-white border border-transparent rounded-full"
-								style={{ paddingLeft: tw(4 + 6 + 2) }}
-								type="text"
-								placeholder="Search"
-								onFocus={e => setFocused(true)}
-								onBlur={e => setFocused(false)}
-							/>
+							<Apply className="bg-gray-100 focus:bg-white border border-transparent focus:border-blue-300 focus:outline-none" style={{ boxShadow: focused && "0 0 0 3px var(--blue-200)" }}>
+								<input
+									className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
+									style={{ paddingLeft: tw(4 + 6 + 2) }}
+									type="text"
+									placeholder="Search"
+									onFocus={e => setFocused(true)}
+									onBlur={e => setFocused(false)}
+								/>
+							</Apply>
 						</ApplyTransition>
 					</div>
 
