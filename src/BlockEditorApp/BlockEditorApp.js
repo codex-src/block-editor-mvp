@@ -109,11 +109,9 @@ const BlockEditorApp = () => {
 						{/* Search bar LHS */}
 						<div className="px-4 absolute inset-y-0 left-0 pointer-events-none">
 							<div className="flex flex-row items-center h-full">
-								<ApplyTransition>
-									<Apply className="text-gray-400" style={{ color: searchText && "var(--blue-500)" }}>
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-									</Apply>
-								</ApplyTransition>
+								<Apply className="text-gray-400" style={{ color: searchText && "var(--gray-800)" }}>
+									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+								</Apply>
 							</div>
 						</div>
 
@@ -135,11 +133,9 @@ const BlockEditorApp = () => {
 						{/* Search bar RHS */}
 						<div className="px-4 absolute inset-y-0 right-0 pointer-events-none" style={{ pointerEvents: searchText && "auto" }}>
 							<div className="flex flex-row items-center h-full">
-								{/* <ApplyTransition> */}
 								<Apply className="text-transparent" style={{ color: searchText && "var(--gray-800)" }}>
 									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
 								</Apply>
-								{/* </ApplyTransition> */}
 							</div>
 						</div>
 
@@ -150,14 +146,14 @@ const BlockEditorApp = () => {
 					<ul className="space-y-3">
 
 						{/* Header */}
-						{/* <Apply className="flex flex-row items-center"> */}
-						{/* 	<li className="font-semibold text-xs tracking-wider truncate text-gray-400"> */}
-						{/* 		<Apply className="mr-2 transform scale-90"> */}
-						{/* 			<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg> */}
-						{/* 		</Apply> */}
-						{/* 		{"Adele – Hello".toUpperCase()} */}
-						{/* 	</li> */}
-						{/* </Apply> */}
+						<Apply className="flex flex-row items-center">
+							<li className="font-medium text-xs tracking-wider truncate text-gray-400">
+								<Apply className="mr-2 transform scale-90">
+									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
+								</Apply>
+								{"Adele – Hello".toUpperCase()}
+							</li>
+						</Apply>
 
 						{/* Subheaders */}
 						<li className="font-medium text-sm truncate text-gray-400">
