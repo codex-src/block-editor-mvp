@@ -18,27 +18,27 @@ module.exports = {
 			},
 			boxShadow: {
 				"hero-sm": trimWhitespace(`
-					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xs}
 					${defaultTheme.boxShadow.sm}
 				`),
 				"hero": trimWhitespace(`
-					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xs}
 					${defaultTheme.boxShadow.default}
 				`),
 				"hero-md": trimWhitespace(`
-					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xs}
 					${defaultTheme.boxShadow.md}
 				`),
 				"hero-lg": trimWhitespace(`
-					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xs}
 					${defaultTheme.boxShadow.lg}
 				`),
 				"hero-xl": trimWhitespace(`
-					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xs}
 					${defaultTheme.boxShadow.xl}
 				`),
 				"hero-2xl": trimWhitespace(`
-					0 0 0 1px rgba(0, 0, 0, 0.05),
+					${defaultTheme.boxShadow.xs}
 					${defaultTheme.boxShadow["2xl"]}
 				`),
 			},
@@ -50,20 +50,17 @@ module.exports = {
 			},
 		},
 		screens: {
-			xs: `${16 + 512 + 16}px`,
-			// => @media (min-width: 540px) { ... }
+			sm: (24 + +defaultTheme.screens.sm.slice(0, -2) + 24) + "px",
+			// => @media (min-width: 640px) { ... }
 
-			sm: `${16 + 640 + 16}px`,
-			// => @media (min-width: 672px) { ... }
+			md: (24 + +defaultTheme.screens.md.slice(0, -2) + 24) + "px",
+			// => @media (min-width: 768px) { ... }
 
-			md: `${16 + 768 + 16}px`,
-			// => @media (min-width: 752px) { ... }
+			lg: (24 + +defaultTheme.screens.lg.slice(0, -2) + 24) + "px",
+			// => @media (min-width: 1024px) { ... }
 
-			lg: `${16 + 1024 + 16}px`,
-			// => @media (min-width: 1008px) { ... }
-
-			xl: `${16 + 1280 + 16}px`,
-			// => @media (min-width: 1264px) { ... }
+			xl: (24 + +defaultTheme.screens.xl.slice(0, -2) + 24) + "px",
+			// => @media (min-width: 1280px) { ... }
 		},
 	},
 	variants: {
