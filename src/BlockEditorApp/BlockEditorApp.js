@@ -146,17 +146,33 @@ const BlockEditorApp = () => {
 						</div>
 					</div>
 					<ApplyTransition>
-						<Apply className="bg-gray-100 focus:bg-white border border-transparent focus:border-blue-300 focus:outline-none" style={{ boxShadow: focused && "0 0 0 3px var(--blue-200)" }}>
-							<input
-								className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
-								style={{ paddingLeft: tw(4 + 6 + 2) }}
-								type="text"
-								placeholder="Search"
-								onFocus={e => setFocused(true)}
-								onBlur={e => setFocused(false)}
-								{...disableAutoCorrect}
-							/>
-						</Apply>
+						<div
+							className="rounded-full"
+							// shadow-md
+							style={{ boxShadow: focused && "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+						>
+							<ApplyTransition>
+								<div
+									className="rounded-full"
+									// shadow-md
+									style={{ boxShadow: focused && "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+								>
+									<ApplyTransition>
+										<Apply className="bg-gray-100 focus:bg-white border border-transparent focus:border-blue-300 focus:outline-none" style={{ boxShadow: focused && "0 0 0 3px var(--blue-200)" }}>
+											<input
+												className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
+												style={{ paddingLeft: tw(4 + 6 + 2) }}
+												type="text"
+												placeholder="Search"
+												onFocus={e => setFocused(true)}
+												onBlur={e => setFocused(false)}
+												{...disableAutoCorrect}
+											/>
+										</Apply>
+									</ApplyTransition>
+								</div>
+							</ApplyTransition>
+						</div>
 					</ApplyTransition>
 				</div>
 

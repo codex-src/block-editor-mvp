@@ -3,7 +3,7 @@
 	"dependencies": {
 		"react": "latest",
 		"react-dom": "latest",
-		"react-scripts": "next",
+		"react-scripts": "latest",
 		"use-immer": "latest",
 		"uuidv4": "latest"
 	},

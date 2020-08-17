@@ -18,27 +18,27 @@ module.exports = {
 			},
 			boxShadow: {
 				"hero-sm": trimWhitespace(`
-					${defaultTheme.boxShadow.xs}
+					${defaultTheme.boxShadow.xs},
 					${defaultTheme.boxShadow.sm}
 				`),
 				"hero": trimWhitespace(`
-					${defaultTheme.boxShadow.xs}
+					${defaultTheme.boxShadow.xs},
 					${defaultTheme.boxShadow.default}
 				`),
 				"hero-md": trimWhitespace(`
-					${defaultTheme.boxShadow.xs}
+					${defaultTheme.boxShadow.xs},
 					${defaultTheme.boxShadow.md}
 				`),
 				"hero-lg": trimWhitespace(`
-					${defaultTheme.boxShadow.xs}
+					${defaultTheme.boxShadow.xs},
 					${defaultTheme.boxShadow.lg}
 				`),
 				"hero-xl": trimWhitespace(`
-					${defaultTheme.boxShadow.xs}
+					${defaultTheme.boxShadow.xs},
 					${defaultTheme.boxShadow.xl}
 				`),
 				"hero-2xl": trimWhitespace(`
-					${defaultTheme.boxShadow.xs}
+					${defaultTheme.boxShadow.xs},
 					${defaultTheme.boxShadow["2xl"]}
 				`),
 			},
