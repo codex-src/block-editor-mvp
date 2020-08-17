@@ -1,5 +1,6 @@
-import disableAutoCorrect from "lib/x/attrs/disableAutoCorrect"
+import disableAutoCorrect from "lib/x/disableAutoCorrect"
 import React from "react"
+import Transition from "lib/x/Transition"
 import tw from "./tw"
 
 import "./index.css"
@@ -125,114 +126,129 @@ const ApplyTransition = ({ children }) => (
 )
 
 const BlockEditorApp = () => {
+	const [mounted, setMounted] = React.useState(false)
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			setMounted(true)
+		}, 200)
+	}, [])
+
 	const [text, setText] = React.useState("")
 
 	// const [state, dispatch] = useImmerReducer(TodoAppReducer, initialState)
 
 	return (
-		<div className="px-4 sm:px-6 py-24 flex flex-row justify-center">
+		<Transition
+			on={mounted}
+			className="transition duration-1000 ease-out"
+			from="opacity-0 transform -translate-y-4"
+			to="opacity-100 transform translate-y-0"
+		>
+			<div className="px-4 sm:px-6 py-24 flex flex-row justify-center">
 
-			{/* LHS */}
-			<aside className="flex-shrink-0 hidden lg:block w-64">
+				{/* LHS */}
+				<aside className="flex-shrink-0 hidden lg:block w-64">
 
-				{/* Search */}
-				<div className="relative">
-					<div className="absolute inset-y-0 left-0 pointer-events-none">
-						<div className="flex flex-row items-center h-full">
-							<ApplyTransition>
-								<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: text && "var(--gray-800)" }}>
-									<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-								</Apply>
-							</ApplyTransition>
+					{/* Search */}
+					<div className="relative">
+						<div className="absolute inset-y-0 left-0 pointer-events-none">
+							<div className="flex flex-row items-center h-full">
+								<ApplyTransition>
+									<Apply className="mx-4 text-gray-400 transform scale-90" style={{ color: text && "var(--gray-800)" }}>
+										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="search w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+									</Apply>
+								</ApplyTransition>
+							</div>
 						</div>
+						<ApplyTransition>
+							<Apply className="bg-gray-100 focus:outline-none">
+								<input
+									id="search-bar"
+									className="px-6 w-full h-12 text-lg text-gray-800 rounded-full"
+									style={{ paddingLeft: tw(4 + 6 + 2) }}
+									type="text"
+									placeholder="Search"
+									onChange={e => setText(e.target.value)}
+									{...disableAutoCorrect}
+								/>
+							</Apply>
+						</ApplyTransition>
 					</div>
-					<ApplyTransition>
-						<Apply className="bg-gray-100 focus:outline-none">
-							<input
-								id="search-input"
-								className="px-6 w-full h-12 text-lg placeholder-gray-400 text-gray-800 rounded-full"
-								style={{ paddingLeft: tw(4 + 6 + 2) }}
-								type="text"
-								placeholder="Search"
-								onChange={e => setText(e.target.value)}
-								{...disableAutoCorrect}
-							/>
-						</Apply>
-					</ApplyTransition>
-				</div>
 
-				{/* Header */}
-				<div className="h-8" />
-				<Apply className="flex flex-row items-center">
-					<p className="font-semibold text-xs tracking-wider truncate text-gray-400">
-						<Apply className="mr-2 transform scale-90">
-							<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
-						</Apply>
-						{"Adele – Hello".toUpperCase()}
-					</p>
-				</Apply>
+					{/* Header */}
+					<div className="h-8" />
+					<Apply className="flex flex-row items-center">
+						<p className="font-semibold text-xs tracking-wider truncate text-gray-400">
+							<Apply className="mr-2 transform scale-90">
+								<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" /></svg>
+							</Apply>
+							{"Adele – Hello".toUpperCase()}
+						</p>
+					</Apply>
 
-				{/* Contents */}
-				<div className="h-4" />
-				<ul className="space-y-3">
-					<li className="font-medium text-sm truncate text-gray-400">
-						Hello, it's me
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							I was wondering if after all these years you'd like to meet
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							To go over everything
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							They say that time's supposed to heal ya
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							But I ain't done much healing
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							Hello, can you hear me?
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							I'm in California dreaming about who we used to be
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							When we were younger and free
-						</p>
-					</li>
-					<li>
-						<p className="font-medium text-sm truncate text-gray-400">
-							I've forgotten how it felt before the world fell at our feet
-						</p>
-					</li>
-				</ul>
+					{/* Contents */}
+					<div className="h-4" />
+					<ul className="space-y-3">
+						<li className="font-medium text-sm truncate text-gray-400">
+							Hello, it's me
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								I was wondering if after all these years you'd like to meet
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								To go over everything
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								They say that time's supposed to heal ya
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								But I ain't done much healing
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								Hello, can you hear me?
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								I'm in California dreaming about who we used to be
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								When we were younger and free
+							</p>
+						</li>
+						<li>
+							<p className="font-medium text-sm truncate text-gray-400">
+								I've forgotten how it felt before the world fell at our feet
+							</p>
+						</li>
+					</ul>
 
-			</aside>
+				</aside>
 
-			{/* <main> */}
-			<div className="flex-shrink-0 hidden lg:block w-12" />
-			<main className="w-full max-w-3xl xl:max-w-2xl !bg-red-100">
-				hello
-			</main>
+				{/* <main> */}
+				<div className="flex-shrink-0 hidden lg:block w-12" />
+				<main className="w-full max-w-3xl xl:max-w-2xl !bg-red-100">
+					hello
+				</main>
 
-			{/* RHS */}
-			<div className="flex-shrink-0 hidden xl:block w-12" />
-			<aside className="flex-shrink-0 hidden xl:block w-64 !bg-blue-100" />
+				{/* RHS */}
+				<div className="flex-shrink-0 hidden xl:block w-12" />
+				<aside className="flex-shrink-0 hidden xl:block w-64 !bg-blue-100" />
 
-		</div>
+			</div>
+		</Transition>
 	)
 }
 
