@@ -74,139 +74,35 @@ function BlockEditorReducer(state, action) {
 	// }
 }
 
-// const SearchBar = ({ searchBarText, setSearchBarText }) => (
-// 	// <div className="relative">
-//
-// 	<Transition
-// 		on={searchBarText}
-// 		className="transition duration-200 ease-in-out"
-// 		from="bg-gray-100"
-// 		to="bg-white"
-// 	>
-// 		<div className="flex flex-row w-64 h-10 rounded-full">
-//
-// 			{/* LHS */}
-// 			{/* */}
-// 			{/* NOTE: Uses w-full because of relative indirection. */}
-// 			<div className="relative w-full">
-//
-// 				<div className="absolute inset-y-0 left-0 pointer-events-none">
-// 					<div className="flex flex-row justify-center items-center w-10 h-10 rounded-full">
-// 						<ApplyTransition>
-// 							<Apply
-// 								className="text-gray-300"
-// 								style={{ color: searchBarText && "var(--teal-400)" }}
-// 							>
-// 								<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg>
-// 							</Apply>
-// 						</ApplyTransition>
-// 					</div>
-// 				</div>
-//
-// 				{/* Search bar */}
-// 				<ApplyTransition>
-// 					<Apply className="w-full h-full">
-// 						<input
-// 							className="text-gray-800 bg-transparent rounded-full focus:outline-none"
-// 							style={{
-// 								padding: `0 ${tw(8.5)}`,
-// 								// paddingLeft: tw(8.5),
-// 								backgroundColor: searchBarText && "var(--teal-50)", // searchBarText && "hsl(200, 100%, 95%)",
-// 							}}
-// 							type="text"
-// 							placeholder="Filter"
-// 							value={searchBarText}
-// 							onChange={e => setSearchBarText(e.target.value)}
-// 							{...disableAutoCorrect}
-// 						/>
-// 					</Apply>
-// 				</ApplyTransition>
-//
-// 				{/* RHS */}
-// 				<Transition
-// 					on={searchBarText}
-// 					className="transition duration-200 ease-in-out"
-// 					from="opacity-0 transform scale-90 pointer-events-none"
-// 					to="opacity-100 transform scale-100 pointer-events-auto"
-// 				>
-// 					<div className="absolute inset-y-0 right-0">
-// 						<div className="relative">
-// 							<button
-// 								className="flex flex-row justify-center items-center w-10 h-10 rounded-full focus:outline-none"
-// 								onClick={e => setSearchBarText("")}
-// 								aria-label="Clear filter"
-// 							>
-// 								<Apply className="text-gray-700">
-// 									<svg viewBox="0 0 20 20" fill="currentColor" className="x-circle w-5 h-5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
-// 								</Apply>
-// 							</button>
-// 							<div className="absolute inset-0" style={{ zIndex: -1 }}>
-// 								<div className="flex flex-row justify-center items-center h-full">
-// 									<div className="w-2 h-2 bg-white rounded-full" />
-// 								</div>
-// 							</div>
-// 						</div>
-// 					</div>
-// 				</Transition>
-//
-// 			</div>
-//
-// 		</div>
-// 	</Transition>
-//
-// 	// 	{/* Subtext */}
-// 	// 	<div className="px-3 py-2 absolute top-full left-0">
-// 	// 		<p className="font-medium text-xs text-gray-600">
-// 	// 			Now filtering for “
-// 	// 			<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}>
-// 	// 				{searchBarText.trim()}
-// 	// 			</span>”
-// 	// 		</p>
-// 	// 	</div>
-// 	// </div>
-// )
-
 const SearchBar = ({ searchBarText, setSearchBarText }) => (
-	// <div className="relative">
-
 	<Transition
 		on={searchBarText}
 		className="transition duration-200 ease-in-out"
 		from="bg-gray-100 shadow-none cursor-text"
 		to="bg-white shadow-hero cursor-auto"
 	>
-		<div className="p-1 flex flex-row w-64 h-12 rounded-full" onClick={e => {
-			if (!searchBarText) {
-				const search = document.getElementById("search")
-				search.focus()
-			}
-		}}>
+		<div className="relative flex flex-row w-64 h-12 rounded-full">
 
 			{/* LHS */}
-			<div className="relative">
-				<div className="absolute inset-y-0 left-0 pointer-events-none">
-					<div className="flex flex-row justify-center items-center w-10 h-10 rounded-full">
-						<ApplyTransition>
-							<Apply
-								className="text-gray-300"
-								style={{ color: searchBarText && "hsl(200, 100%, 50%)" }}
-							>
-								<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg>
-							</Apply>
-						</ApplyTransition>
-					</div>
+			<div className="absolute inset-y-0 left-0 pointer-events-none">
+				<div className="flex flex-row justify-center items-center w-12 h-12 rounded-full">
+					<ApplyTransition>
+						<Apply
+							className="text-gray-300"
+							style={{ color: searchBarText && "hsl(200, 100%, 50%)" }}
+						>
+							<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg>
+						</Apply>
+					</ApplyTransition>
 				</div>
 			</div>
 
 			<ApplyTransition>
-				<Apply className="w-full h-full bg-transparent">
+				<Apply className="appearance-none w-full h-full bg-transparent">
 					<input
 						id="search"
-						className="pl-10 pr-5 rounded-full focus:outline-none"
-						style={{
-							color: searchBarText && "hsl(200, 100%, 31.25%)",
-							backgroundColor: searchBarText && "hsl(200, 100%, 95%)",
-						}}
+						className="pl-12 text-gray-800 rounded-full focus:outline-none"
+						style={{ fontSize: tw(4.25) }}
 						type="text"
 						placeholder="Filter"
 						value={searchBarText}
@@ -216,69 +112,40 @@ const SearchBar = ({ searchBarText, setSearchBarText }) => (
 				</Apply>
 			</ApplyTransition>
 
-			{/* RHS */}
-			<div className="flex-shrink-0 w-1" />
-			<Apply className="flex-shrink-0">
+			{/* LHS */}
+			<div className="absolute inset-y-0 right-0 pointer-events-none">
 				<Transition
 					on={searchBarText}
 					className="transition duration-200 ease-in-out"
-					from="opacity-0 transform scale-75 pointer-events-none"
-					to="opacity-100 transform scale-100 pointer-events-auto"
+					from="opacity-0 transform -rotate-180 scale-50 pointer-events-none"
+					to="opacity-100 transform rotate-0 scale-100 pointer-events-auto"
 				>
 					<button
-						className="flex flex-row justify-center items-center w-10 h-10 focus:outline-none"
-						onClick={e => setSearchBarText("")}
+						className="flex flex-row justify-center items-center w-12 h-12 rounded-full focus:outline-none"
+						onClick={e => {
+							const search = document.getElementById("search")
+							search.focus()
+							setSearchBarText("")
+						}}
 						aria-label="Clear filter"
 					>
-						<Apply className="text-gray-700">
+						<Apply className="text-gray-800">
 							<svg viewBox="0 0 20 20" fill="currentColor" className="x-circle w-5 h-5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
-							{/* <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg> */}
+							{/* <svg viewBox="0 0 20 20" fill="currentColor" className="x w-4 h-4"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg> */}
 						</Apply>
 					</button>
 				</Transition>
-			</Apply>
+			</div>
 
 		</div>
 	</Transition>
-
-	// {/* Subtext */}
-	// <Transition
-	// 	on={searchBarText}
-	// 	className="transition duration-200 ease-in-out"
-	// 	from="opacity-0 pointer-events-none"
-	// 	to="opacity-100 pointer-events-auto"
-	// >
-	// 	<div className="px-3 py-2 absolute top-full left-0">
-	// 		<p className="font-medium text-xs text-gray-600">
-	// 			Filtering for “
-	// 			<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}>
-	// 				{searchBarText.trim()}
-	// 			</span>”
-	// 		</p>
-	// 	</div>
-	// </Transition>
-
-	// </div>
 )
 
 const BlockEditorApp = () => {
 	// const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
 
-	// const searchInputRef = React.useRef(null)
-	// const searchHeaderRef = React.useRef(null)
-
 	const [scrollYBeforeSearchBarChange, setScrollYBeforeSearchBarChange] = React.useState(0)
 	const [searchBarText, setSearchBarText] = React.useState("")
-
-	// // Effect for simulating flex flex-row items-baseline.
-	// React.useLayoutEffect(() => {
-	// 	if (!searchBarText) {
-	// 		// No-op
-	// 		return
-	// 	}
-	// 	const nudge = (searchHeaderRef.current.offsetHeight - searchInputRef.current.offsetHeight) / 2
-	// 	searchHeaderRef.current.style.marginTop = (-searchInputRef.current.offsetHeight + -nudge) + "px"
-	// }, [searchBarText])
 
 	// Effect for auto-scrolling on searchBarText.
 	React.useEffect(() => {
@@ -298,180 +165,28 @@ const BlockEditorApp = () => {
 		}
 	}, [searchBarText])
 
-	// NOTE: Uses items-start because of sticky top-0.
 	return (
 		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center items-start">
 
-			{/* Search bar */}
-			{/* <aside className="p-4 fixed top-0 left-auto md:left-0 z-30"> */}
-			{/* 	<SearchBar */}
-			{/* 		searchBarText={searchBarText} */}
-			{/* 		setSearchBarText={setSearchBarText} */}
-			{/* 	/> */}
-			{/* </aside> */}
-
 			{/* LHS */}
-			<Apply className="-mt-32 sticky top-0">
+			<Apply className="-mt-32 pt-32 sticky top-0">
 				<aside className="flex-shrink-0 hidden md:block w-64">
 
-					<div className="h-4" />
 					<SearchBar
 						searchBarText={searchBarText}
 						setSearchBarText={setSearchBarText}
 					/>
-
-					{/* Contents */}
-					<div style={{ height: tw(32 - 4 - 10) }} />
-					<ul className="space-y-2">
-
-						{/* Header */}
-						<li>
-							<Apply className="flex flex-row items-center">
-								<p className="font-medium text-xs tracking-wider truncate text-gray-400">
-									<Apply className="mr-1.5 transform scale-90 origin-left">
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="menu-alt2 w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" /></svg>
-										{/* <svg viewBox="0 0 20 20" fill="currentColor" className="menu-alt2 w-4 h-4"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" /></svg> */}
-									</Apply>
-									{/* TABLE OF CONTENTS */}
-									{"Adele – Hello".toUpperCase()}
-								</p>
-							</Apply>
-						</li>
-
-						{/* Subheaders */}
-						{/* */}
-						{/* NOTE: Uses pt-* because of space-y-*. */}
-						<li className="pt-2">
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								Hello, it's me
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								I was wondering if after all these years you'd like to meet
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								To go over everything
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								They say that time's supposed to heal ya
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								But I ain't done much healing
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								Hello, can you hear me?
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								I'm in California dreaming about who we used to be
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								When we were younger and free
-							</p>
-						</li>
-						<li>
-							<p
-								className="text-sm truncate text-gray-500"
-								style={{
-									// fontSize: tw(3.75),
-									letterSpacing: "0.0125em",
-								}}
-							>
-								I've forgotten how it felt before the world fell at our feet
-							</p>
-						</li>
-
-					</ul>
 
 				</aside>
 			</Apply>
 
 			{/* <main> */}
 			<div className="flex-shrink-0 hidden md:block w-12" />
-			<main className="w-full max-w-2xl">
-
-				{searchBarText && (
-					<DocumentTitle title={`Searching “${searchBarText}”`} />
-				)}
-
-				{/* {searchBarText && ( */}
-				{/* 	<div className="relative"> */}
-				{/* 		<div className="-mt-8 absolute top-0 inset-x-0"> */}
-				{/* 			<DocumentTitle title={`Searching “${searchBarText}”`}> */}
-				{/* 				<h1 ref={searchHeaderRef} className="font-bold text-4xl truncate text-gray-800"> */}
-				{/* 					Searching “ */}
-				{/* 					<span className="underline" style={{ textDecorationColor: "var(--teal-400)" }}> */}
-				{/* 						{searchBarText.trim()} */}
-				{/* 					</span> */}
-				{/* 					” */}
-				{/* 				</h1> */}
-				{/* 			</DocumentTitle> */}
-				{/* 		</div> */}
-				{/* 	</div> */}
-				{/* )} */}
-
-				<FakeContent />
-			</main>
+			<DocumentTitle title={!searchBarText ? "TODO" : `Searching “${searchBarText}”`}>
+				<main>
+					<FakeContent />
+				</main>
+			</DocumentTitle>
 
 			{/* RHS */}
 			<div className="flex-shrink-0 hidden xl:block w-12" />
