@@ -192,7 +192,7 @@ const BlockEditorApp = () => {
 				}
 			})
 		}, [state, dispatch]),
-		[state.document, state.range],
+		[state.rerenderDocument],
 	)
 
 	return (
@@ -248,12 +248,12 @@ const BlockEditorApp = () => {
 
 						onInput={e => {
 							const range = getCurrentRange()
-							if (!range) {
-								throw new Error(`BlockEditorApp.onInput: no such range; range=${range}`)
-							}
-							if (range.start !== range.end) {
-								throw new Error(`BlockEditorApp.onInput: range not collapsed; range=${JSON.stringify(range)}`)
-							}
+							// if (!range) {
+							// 	throw new Error(`BlockEditorApp.onInput: no such range; range=${range}`)
+							// }
+							// if (range.start !== range.end) {
+							// 	throw new Error(`BlockEditorApp.onInput: range not collapsed; range=${JSON.stringify(range)}`)
+							// }
 							const collapsedRange = range
 							const children = document.getElementById(collapsedRange.start.key).innerText
 							dispatch({

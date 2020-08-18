@@ -20,6 +20,7 @@ const initialState = {
 			},
 		},
 	],
+	rerenderDocument: 0,
 	focused: false,
 	range: {
 		start: {
@@ -53,12 +54,13 @@ const actions = state => ({
 	},
 	// Uncontrolled input handler.
 	uncontrolledInput(children, collapsedRange) {
-		const node = state.document.find(each => collapsedRange.start.key)
-		if (!node) {
-			throw new Error(`actions.uncontrolledInput: no such node; node=${node}`)
-		}
+		const node = state.document.find(each => each.key === collapsedRange.start.key)
+		// if (!node) {
+		// 	throw new Error(`actions.uncontrolledInput: no such node; node=${node}`)
+		// }
 		node.props.children = children
 		state.range = collapsedRange
+		state.rerenderDocument++
 	},
 })
 
