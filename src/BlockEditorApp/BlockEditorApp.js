@@ -248,7 +248,23 @@ const BlockEditorApp = () => {
 						}}
 
 						onKeyDown={e => {
-							// ...
+							// console.log({ key: e.key })
+
+							switch (true) {
+							case e.key === "Backspace":
+							case e.ctrlKey && e.key === "d":
+								e.preventDefault()
+								return
+							case e.key === "Delete":
+								e.preventDefault()
+								return
+							case e.key === "Enter":
+								e.preventDefault()
+								return
+							default:
+								// No-op
+								break
+							}
 						}}
 
 						onInput={e => {
