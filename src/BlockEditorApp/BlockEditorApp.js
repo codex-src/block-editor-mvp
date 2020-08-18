@@ -199,11 +199,14 @@ const SearchBar = ({ searchBarText, setSearchBarText }) => (
 			</div>
 
 			<ApplyTransition>
-				<Apply className="w-full h-full">
+				<Apply className="w-full h-full bg-transparent">
 					<input
 						id="search"
-						className="pl-10 pr-5 text-gray-800 bg-transparent rounded-full focus:outline-none"
-						style={{ backgroundColor: searchBarText && "hsl(200, 100%, 95%)" }}
+						className="pl-10 pr-5 rounded-full focus:outline-none"
+						style={{
+							color: searchBarText && "hsl(200, 100%, 31.25%)",
+							backgroundColor: searchBarText && "hsl(200, 100%, 95%)",
+						}}
 						type="text"
 						placeholder="Filter"
 						value={searchBarText}
@@ -239,15 +242,22 @@ const SearchBar = ({ searchBarText, setSearchBarText }) => (
 	</Transition>
 
 	// {/* Subtext */}
-	// {/* <div className="px-3 py-2 absolute top-full left-0"> */}
-	// {/* 	<p className="font-medium text-xs text-gray-600"> */}
-	// {/* 		Now filtering for “ */}
-	// {/* 		<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}> */}
-	// {/* 			{searchBarText.trim()} */}
-	// {/* 		</span>” */}
-	// {/* 	</p> */}
-	// {/* </div> */}
-	//
+	// <Transition
+	// 	on={searchBarText}
+	// 	className="transition duration-200 ease-in-out"
+	// 	from="opacity-0 pointer-events-none"
+	// 	to="opacity-100 pointer-events-auto"
+	// >
+	// 	<div className="px-3 py-2 absolute top-full left-0">
+	// 		<p className="font-medium text-xs text-gray-600">
+	// 			Filtering for “
+	// 			<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}>
+	// 				{searchBarText.trim()}
+	// 			</span>”
+	// 		</p>
+	// 	</div>
+	// </Transition>
+
 	// </div>
 )
 
