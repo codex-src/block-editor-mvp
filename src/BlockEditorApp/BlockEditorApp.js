@@ -172,15 +172,20 @@ const SearchBar = ({ searchBarText, setSearchBarText }) => (
 	<Transition
 		on={searchBarText}
 		className="transition duration-200 ease-in-out"
-		from="bg-gray-100 shadow-none"
-		to="bg-white shadow-hero"
+		from="bg-gray-100 shadow-none cursor-text"
+		to="bg-white shadow-hero cursor-auto"
 	>
-		<div className="p-1 flex flex-row w-64 h-10 rounded-full">
+		<div className="p-1 flex flex-row w-64 h-12 rounded-full" onClick={e => {
+			if (!searchBarText) {
+				const search = document.getElementById("search")
+				search.focus()
+			}
+		}}>
 
 			{/* LHS */}
 			<div className="relative">
 				<div className="absolute inset-y-0 left-0 pointer-events-none">
-					<div className="flex flex-row justify-center items-center w-8 h-8 rounded-full">
+					<div className="flex flex-row justify-center items-center w-10 h-10 rounded-full">
 						<ApplyTransition>
 							<Apply
 								className="text-gray-300"
@@ -196,11 +201,9 @@ const SearchBar = ({ searchBarText, setSearchBarText }) => (
 			<ApplyTransition>
 				<Apply className="w-full h-full">
 					<input
-						className="pr-4 text-gray-800 bg-transparent rounded-full focus:outline-none"
-						style={{
-							paddingLeft: tw(8.5),
-							backgroundColor: searchBarText && "hsl(200, 100%, 95%)",
-						}}
+						id="search"
+						className="pl-10 pr-5 text-gray-800 bg-transparent rounded-full focus:outline-none"
+						style={{ backgroundColor: searchBarText && "hsl(200, 100%, 95%)" }}
 						type="text"
 						placeholder="Filter"
 						value={searchBarText}
@@ -211,19 +214,20 @@ const SearchBar = ({ searchBarText, setSearchBarText }) => (
 			</ApplyTransition>
 
 			{/* RHS */}
-			<Apply className="ml-1 flex-shrink-0">
+			<div className="flex-shrink-0 w-1" />
+			<Apply className="flex-shrink-0">
 				<Transition
 					on={searchBarText}
 					className="transition duration-200 ease-in-out"
-					from="opacity-0 transform scale-75"
-					to="opacity-100 transform scale-100"
+					from="opacity-0 transform scale-75 pointer-events-none"
+					to="opacity-100 transform scale-100 pointer-events-auto"
 				>
 					<button
-						className="flex flex-row justify-center items-center w-8 h-8 focus:outline-none"
+						className="flex flex-row justify-center items-center w-10 h-10 focus:outline-none"
 						onClick={e => setSearchBarText("")}
 						aria-label="Clear filter"
 					>
-						<Apply className="text-gray-800">
+						<Apply className="text-gray-700">
 							<svg viewBox="0 0 20 20" fill="currentColor" className="x-circle w-5 h-5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
 							{/* <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="x w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg> */}
 						</Apply>
@@ -297,9 +301,10 @@ const BlockEditorApp = () => {
 			{/* </aside> */}
 
 			{/* LHS */}
-			<Apply className="-mt-32 pt-4 sticky top-0">
+			<Apply className="-mt-32 sticky top-0">
 				<aside className="flex-shrink-0 hidden md:block w-64">
 
+					<div className="h-4" />
 					<SearchBar
 						searchBarText={searchBarText}
 						setSearchBarText={setSearchBarText}
