@@ -100,6 +100,14 @@ function ascendElement(node) {
 	return node
 }
 
+// Descends to the deepest text node.
+function descendTextNode(node) {
+	while (node && node.nodeType !== Node.TEXT_NODE && node.childNodes.length) {
+		node = node.childNodes[0]
+	}
+	return node
+}
+
 // Converts a DOM range fragment.
 function convFragment([node, offset]) {
 	const key = ascendElement(node).closest("[id][data-node]").id
@@ -175,8 +183,8 @@ const BlockEditorApp = () => {
 					return
 				}
 				const [s, r] = [document.getSelection(), document.createRange()]
-				r.setStart(document.getElementById(state.range.start.key), state.range.start.offset)
-				r.setEnd(document.getElementById(state.range.end.key), state.range.end.offset)
+				r.setStart(descendTextNode(document.getElementById(state.range.start.key)), state.range.start.offset)
+				r.setEnd(descendTextNode(document.getElementById(state.range.end.key)), state.range.end.offset)
 				s.addRange(r)
 			})
 		}, [state, dispatch]),
