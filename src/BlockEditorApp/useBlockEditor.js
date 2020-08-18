@@ -51,7 +51,35 @@ const actions = state => ({
 	select(range) {
 		state.range = range
 	},
+	// Uncontrolled input handler.
+	uncontrolledInput(children, collapsedRange) {
+		const node = state.document.find(each => collapsedRange.start.key)
+		if (!node) {
+			throw new Error(`actions.uncontrolledInput: no such node; node=${node}`)
+		}
+		node.props.children = children
+		state.range = collapsedRange
+	},
 })
+
+// case "TOGGLE_NEXT_TODO":
+// 	actions(state).toggleNextTodo()
+// 	return
+// case "UPDATE_NEXT_TODO":
+// 	actions(state).updateNextTodo(action.text)
+// 	return
+// case "APPEND_NEXT_TODO":
+// 	actions(state).appendNextTodo()
+// 	return
+// case "TOGGLE_TODO_BY_ID":
+// 	actions(state).toggleTodoByID(action.id)
+// 	return
+// case "UPDATE_TODO_BY_ID":
+// 	actions(state).updateTodoByID(action.id, action.text)
+// 	return
+// case "DELETE_TODO_BY_ID":
+// 	actions(state).deleteTodoByID(action.id)
+// 	return
 
 function BlockEditorReducer(state, action) {
 	switch (action.type) {
@@ -68,27 +96,12 @@ function BlockEditorReducer(state, action) {
 	case "SELECT":
 		actions(state).select(action.range)
 		return
+	case "UNCONTROLLED_INPUT":
+		actions(state).uncontrolledInput(action.children, action.collapsedRange)
+		return
 
-	// case "TOGGLE_NEXT_TODO":
-	// 	actions(state).toggleNextTodo()
-	// 	return
-	// case "UPDATE_NEXT_TODO":
-	// 	actions(state).updateNextTodo(action.text)
-	// 	return
-	// case "APPEND_NEXT_TODO":
-	// 	actions(state).appendNextTodo()
-	// 	return
-	// case "TOGGLE_TODO_BY_ID":
-	// 	actions(state).toggleTodoByID(action.id)
-	// 	return
-	// case "UPDATE_TODO_BY_ID":
-	// 	actions(state).updateTodoByID(action.id, action.text)
-	// 	return
-	// case "DELETE_TODO_BY_ID":
-	// 	actions(state).deleteTodoByID(action.id)
-	// 	return
 	default:
-		throw new Error(`BlockEditorReducer: action mismatch; action=${action}`)
+		throw new Error(`BlockEditorReducer: action mismatch; action=${action.type}`)
 	}
 }
 

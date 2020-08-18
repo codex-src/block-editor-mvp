@@ -102,7 +102,7 @@ function ascendElement(node) {
 // Converts a DOM range fragment.
 function convFragment([node, offset]) {
 	const key = ascendElement(node).closest("[id][data-node]").id
-	return [key, offset]
+	return { key, offset }
 }
 
 // Gets the current from the DOM range.
@@ -194,19 +194,20 @@ const BlockEditorApp = () => {
 						}}
 
 						onInput={e => {
-							// // Get the start key:
-							// const selection = document.getSelection()
-							// const range = selection.getRangeAt(0)
-							// let start = range.startContainer
-							// if (start.nodeType === Node.TEXT_NODE) {
-							// 	start = start.parentElement
-							// }
-							// const node = start.closest("[id][data-node]")
-							// dispatch({
-							// 	key: start.key,
-							// 	text: node.innerText,
-							// })
-							// // console.log(node.id)
+							const range = getCurrentRange()
+							if (!range) {
+								throw new Error(`BlockEditorApp.onInput: no such range; range=${range}`)
+							}
+							if (range.start !== range.end) {
+								throw new Error(`BlockEditorApp.onInput: range not collapsed; range=${JSON.stringify(range)}`)
+							}
+							const collapsedRange = range
+							const children = document.getElementById(collapsedRange.start.key).innerText
+							dispatch({
+								type: "UNCONTROLLED_INPUT",
+								children,
+								collapsedRange,
+							})
 						}}
 
 						contentEditable
@@ -220,14 +221,12 @@ const BlockEditorApp = () => {
 								id={each.key}
 								className="leading-relaxed text-gray-800 border"
 								style={{
+									minHeight: tw(4.25),
 									fontSize: tw(4.25),
-									// lineHeight: !each.props.children && 1,
 								}}
 								data-node
 							>
-								{each.props.children || (
-									<br />
-								)}
+								{each.props.children}
 							</p>
 						))}
 					</article>
