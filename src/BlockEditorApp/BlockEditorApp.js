@@ -6,7 +6,6 @@ import React from "react"
 import Transition from "lib/x/Transition"
 import tw from "./tw"
 import useBlockEditor from "./useBlockEditor"
-import uuid from "uuid/v4"
 
 import "./index.css"
 
@@ -92,6 +91,35 @@ const FilterBar = ({ state, dispatch }) => {
 	)
 }
 
+// Ascends to the nearest element.
+function ascendElement(node) {
+	if (node.nodeType === Node.TEXT_NODE && node.parentElement) {
+		return node.parentElement
+	}
+	return node
+}
+
+// Converts a DOM range fragment.
+function convFragment([node, offset]) {
+	const key = ascendElement(node).closest("[id][data-node]").id
+	return [key, offset]
+}
+
+// Gets the current from the DOM range.
+function getCurrentRange() {
+	const s = document.getSelection()
+	if (!s.rangeCount) {
+		return null
+	}
+	const r = s.getRangeAt(0)
+	const start = convFragment([r.startContainer, r.startOffset])
+	let end = start
+	if (!r.collapsed) {
+		end = convFragment([r.endContainer, r.endOffset])
+	}
+	return { start, end }
+}
+
 const BlockEditorApp = () => {
 	const [state, dispatch] = useBlockEditor()
 
@@ -130,15 +158,89 @@ const BlockEditorApp = () => {
 				</aside>
 			</Apply>
 
-			{/* <main> */}
+			{/* <article> */}
 			<div className="flex-shrink-0 hidden md:block w-12" />
 			<DocumentTitle title={!state.filter ? "TODO" : `Filtering for “${state.filter}”`}>
-				<main className="max-w-2xl w-full">
+				<div>
+					<article
+						className="max-w-2xl w-full focus:outline-none"
 
-					{/* ... */}
+						onFocus={e => {
+							dispatch({
+								type: "FOCUS",
+							})
+						}}
 
-					{/* <FakeContent /> */}
-				</main>
+						onBlur={e => {
+							dispatch({
+								type: "BLUR",
+							})
+						}}
+
+						onSelect={e => {
+							const range = getCurrentRange()
+							if (!range) {
+								// No-op
+								return
+							}
+							dispatch({
+								type: "SELECT",
+								range,
+							})
+						}}
+
+						onKeyDown={e => {
+							// ...
+						}}
+
+						onInput={e => {
+							// // Get the start key:
+							// const selection = document.getSelection()
+							// const range = selection.getRangeAt(0)
+							// let start = range.startContainer
+							// if (start.nodeType === Node.TEXT_NODE) {
+							// 	start = start.parentElement
+							// }
+							// const node = start.closest("[id][data-node]")
+							// dispatch({
+							// 	key: start.key,
+							// 	text: node.innerText,
+							// })
+							// // console.log(node.id)
+						}}
+
+						contentEditable
+						suppressContentEditableWarning
+					>
+
+						{/* TODO: each.type */}
+						{state.document.map(each => (
+							<p
+								key={each.key}
+								id={each.key}
+								className="leading-relaxed text-gray-800 border"
+								style={{
+									fontSize: tw(4.25),
+									// lineHeight: !each.props.children && 1,
+								}}
+								data-node
+							>
+								{each.props.children || (
+									<br />
+								)}
+							</p>
+						))}
+					</article>
+
+					{process.env.NODE_ENV !== "production" && (
+						<div className="mt-6">
+							<p className="whitespace-pre-wrap text-sm leading-tight font-mono" style={{ tabSize: 2 }}>
+								{JSON.stringify(state, null, "\t")}
+							</p>
+						</div>
+					)}
+
+				</div>
 			</DocumentTitle>
 
 			{/* RHS */}
