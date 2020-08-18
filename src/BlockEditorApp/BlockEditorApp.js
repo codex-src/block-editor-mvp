@@ -2,6 +2,7 @@ import Apply from "lib/x/Apply"
 import ApplyTransition from "lib/x/ApplyTransition"
 import disableAutoCorrect from "lib/x/disableAutoCorrect"
 import DocumentTitle from "lib/x/DocumentTitle"
+import noopTextContent from "./noopTextContent"
 import React from "react"
 import ReactDOM from "react-dom"
 import Transition from "lib/x/Transition"
@@ -148,6 +149,10 @@ function getCurrentRange() {
 // 		clearTimeout(id)
 // 	}
 // }, [searchBarText])
+
+;(() => {
+	noopTextContent()
+})()
 
 const ReactDocument = ({ state, dispatch }) => (
 	// TODO: Add support for each.type.
