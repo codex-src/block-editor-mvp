@@ -115,6 +115,73 @@ const BlockEditorApp = () => {
 	return (
 		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center items-start">
 
+			{/* Search bar */}
+			<div className="p-4 fixed top-0 left-0 z-30">
+
+				{/* Shadow */}
+				{/* <div className="relative"> */}
+				<div className="p-1 flex flex-row w-80 h-12 bg-white rounded-full shadow-hero">
+
+					{/* LHS */}
+					<div className="relative">
+						<div className="absolute inset-y-0 left-0 pointer-events-none">
+							<div className="flex flex-row justify-center items-center w-10 h-10 rounded-full">
+								<Apply style={{ color: "hsl(200, 100%, 50%)" }}>
+									<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg>
+								</Apply>
+							</div>
+						</div>
+					</div>
+
+					<Apply className="w-full h-full">
+						<input
+							className="!pl-10 pr-4 bg-transparent rounded-full focus:outline-none"
+							style={{
+								paddingLeft: tw(8.5),
+								color: "hsl(200, 100%, 25%)",
+								backgroundColor: "hsl(200, 100%, 95%)",
+							}}
+							type="text"
+							// placeholder="Filter"
+							onChange={e => {}}
+							{...disableAutoCorrect}
+						/>
+					</Apply>
+
+					{/* RHS */}
+					<div className="w-2" />
+					<div className="pl-3 flex flex-row items-center w-auto h-10 bg-gray-100 rounded-full">
+						<p className="font-semibold !text-xs tracking-widest text-gray-700" style={{ fontSize: tw(2.75) }}>
+								CLEAR
+						</p>
+						<div className="-ml-1.5 flex flex-row justify-center items-center w-10 h-10">
+							<Apply className="text-gray-600">
+								<svg viewBox="0 0 20 20" fill="currentColor" className="x-circle w-5 h-5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
+							</Apply>
+						</div>
+					</div>
+
+				</div>
+
+				{/* Subtext */}
+				{/* <div className="pl-4 pt-2 absolute top-full left-0"> */}
+				{/* 	<div className="flex flex-row items-center"> */}
+				{/* 		<Apply className="mr-1 text-gray-600"> */}
+				{/* 			<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-3 h-3"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg> */}
+				{/* 		</Apply> */}
+				{/* 		<p className="text-xs tracking-wide text-gray-600"> */}
+				{/* 			Filtering for “ */}
+				{/* 			<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}> */}
+				{/* 				Hello, world! */}
+				{/* 			</span>” */}
+				{/* 		</p> */}
+				{/* 	</div> */}
+				{/* </div> */}
+
+				{/* </div> */}
+
+			</div>
+
 			{/* LHS */}
 			<Apply className="-mt-32 pt-32 sticky top-0">
 				<aside className="flex-shrink-0 hidden md:block w-64">
