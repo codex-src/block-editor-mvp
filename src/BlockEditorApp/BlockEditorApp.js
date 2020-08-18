@@ -74,59 +74,20 @@ function BlockEditorReducer(state, action) {
 	// }
 }
 
-const BlockEditorApp = () => {
-	// const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
-
-	const searchInputRef = React.useRef(null)
-	// const searchHeaderRef = React.useRef(null)
-
-	const [scrollYBeforeSearchText, setScrollYBeforeSearchText] = React.useState(0)
-	const [searchText, setSearchText] = React.useState("")
-
-	// // Effect for simulating flex flex-row items-baseline.
-	// React.useLayoutEffect(() => {
-	// 	if (!searchText) {
-	// 		// No-op
-	// 		return
-	// 	}
-	// 	const nudge = (searchHeaderRef.current.offsetHeight - searchInputRef.current.offsetHeight) / 2
-	// 	searchHeaderRef.current.style.marginTop = (-searchInputRef.current.offsetHeight + -nudge) + "px"
-	// }, [searchText])
-
-	// Effect for auto-scrolling on searchText.
-	React.useEffect(() => {
-		if ([...searchText].length <= 1 && window.scrollY) {
-			setScrollYBeforeSearchText(window.scrollY)
-		}
-
-		const id = setTimeout(() => {
-			if (!searchText) {
-				window.scrollTo(0, scrollYBeforeSearchText)
-			} else {
-				window.scrollTo(0, 0)
-			}
-		}, 200)
-		return () => {
-			clearTimeout(id)
-		}
-	}, [searchText])
-
-	// NOTE: Uses items-start because of sticky top-0.
-	return (
-		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center items-start">
-
-			{/* Search bar */}
-			<div className="p-4 fixed top-0 left-0 z-30">
-
-				{/* Shadow */}
-				{/* <div className="relative"> */}
-				<div className="p-1 flex flex-row w-80 h-12 bg-white rounded-full shadow-hero">
+const SearchBar = ({ searchBarText, setSearchBarText }) => (
+	<div className="relative">
+		<ApplyTransition>
+			<Apply className={!searchBarText ? "bg-gray-100 shadow-none" : "bg-white shadow-hero"}>
+				<div className="p-1 flex flex-row w-64 h-10 rounded-full">
 
 					{/* LHS */}
 					<div className="relative">
 						<div className="absolute inset-y-0 left-0 pointer-events-none">
-							<div className="flex flex-row justify-center items-center w-10 h-10 rounded-full">
-								<Apply style={{ color: "hsl(200, 100%, 50%)" }}>
+							<div className="flex flex-row justify-center items-center w-8 h-8 rounded-full">
+								<Apply
+									className="text-gray-300"
+									style={{ color: searchBarText && "hsl(200, 100%, 50%)" }}
+								>
 									<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-5 h-5"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg>
 								</Apply>
 							</div>
@@ -135,58 +96,108 @@ const BlockEditorApp = () => {
 
 					<Apply className="w-full h-full">
 						<input
-							className="!pl-10 pr-4 bg-transparent rounded-full focus:outline-none"
+							className="pr-4 bg-transparent rounded-full focus:outline-none"
 							style={{
 								paddingLeft: tw(8.5),
 								color: "hsl(200, 100%, 25%)",
-								backgroundColor: "hsl(200, 100%, 95%)",
+								backgroundColor: searchBarText && "hsl(200, 100%, 95%)",
 							}}
 							type="text"
 							// placeholder="Filter"
-							onChange={e => {}}
+							value={searchBarText}
+							onChange={e => setSearchBarText(e.target.value)}
 							{...disableAutoCorrect}
 						/>
 					</Apply>
 
 					{/* RHS */}
-					<div className="w-2" />
-					<div className="pl-3 flex flex-row items-center w-auto h-10 bg-gray-100 rounded-full">
-						<p className="font-semibold !text-xs tracking-widest text-gray-700" style={{ fontSize: tw(2.75) }}>
-								CLEAR
-						</p>
-						<div className="-ml-1.5 flex flex-row justify-center items-center w-10 h-10">
-							<Apply className="text-gray-600">
-								<svg viewBox="0 0 20 20" fill="currentColor" className="x-circle w-5 h-5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
-							</Apply>
-						</div>
-					</div>
+					{searchBarText && (
+						<Apply className="flex-shrink-0">
+							<div className="ml-1 flex flex-row justify-center items-center w-8 h-8">
+								<Apply className="text-gray-600">
+									<svg viewBox="0 0 20 20" fill="currentColor" className="x-circle w-5 h-5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
+								</Apply>
+							</div>
+						</Apply>
+					)}
 
 				</div>
+			</Apply>
+		</ApplyTransition>
 
-				{/* Subtext */}
-				{/* <div className="pl-4 pt-2 absolute top-full left-0"> */}
-				{/* 	<div className="flex flex-row items-center"> */}
-				{/* 		<Apply className="mr-1 text-gray-600"> */}
-				{/* 			<svg viewBox="0 0 20 20" fill="currentColor" className="filter w-3 h-3"><path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" /></svg> */}
-				{/* 		</Apply> */}
-				{/* 		<p className="text-xs tracking-wide text-gray-600"> */}
-				{/* 			Filtering for “ */}
-				{/* 			<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}> */}
-				{/* 				Hello, world! */}
-				{/* 			</span>” */}
-				{/* 		</p> */}
-				{/* 	</div> */}
-				{/* </div> */}
+		{/* Subtext */}
+		{/* <div className="px-3 py-2 absolute top-full left-0"> */}
+		{/* 	<p className="font-medium text-xs !tracking-wide text-gray-500"> */}
+		{/* 		Now filtering for “ */}
+		{/* 		<span className="underline" style={{ textDecorationColor: "hsl(200, 100%, 50%)" }}> */}
+		{/* 			Hello, world! */}
+		{/* 		</span>” */}
+		{/* 	</p> */}
+		{/* </div> */}
 
-				{/* </div> */}
+	</div>
+)
 
-			</div>
+const BlockEditorApp = () => {
+	// const [state, dispatch] = useImmerReducer(BlockEditorReducer, initialState)
+
+	// const searchInputRef = React.useRef(null)
+	// const searchHeaderRef = React.useRef(null)
+
+	const [scrollYBeforeSearchBarChange, setScrollYBeforeSearchBarChange] = React.useState(0)
+	const [searchBarText, setSearchBarText] = React.useState("")
+
+	// // Effect for simulating flex flex-row items-baseline.
+	// React.useLayoutEffect(() => {
+	// 	if (!searchBarText) {
+	// 		// No-op
+	// 		return
+	// 	}
+	// 	const nudge = (searchHeaderRef.current.offsetHeight - searchInputRef.current.offsetHeight) / 2
+	// 	searchHeaderRef.current.style.marginTop = (-searchInputRef.current.offsetHeight + -nudge) + "px"
+	// }, [searchBarText])
+
+	// Effect for auto-scrolling on searchBarText.
+	React.useEffect(() => {
+		if ([...searchBarText].length <= 1 && window.scrollY) {
+			setScrollYBeforeSearchBarChange(window.scrollY)
+		}
+
+		const id = setTimeout(() => {
+			if (!searchBarText) {
+				window.scrollTo(0, scrollYBeforeSearchBarChange)
+			} else {
+				window.scrollTo(0, 0)
+			}
+		}, 200)
+		return () => {
+			clearTimeout(id)
+		}
+	}, [searchBarText])
+
+	// NOTE: Uses items-start because of sticky top-0.
+	return (
+		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center items-start">
+
+			{/* Search bar */}
+			{/* <aside className="p-4 fixed top-0 left-auto md:left-0 z-30"> */}
+			{/* 	<SearchBar */}
+			{/* 		searchBarText={searchBarText} */}
+			{/* 		setSearchBarText={setSearchBarText} */}
+			{/* 	/> */}
+			{/* </aside> */}
 
 			{/* LHS */}
-			<Apply className="-mt-32 pt-32 sticky top-0">
+			<Apply className="-mt-32 pt-4 sticky top-0">
 				<aside className="flex-shrink-0 hidden md:block w-64">
 
+					<SearchBar
+						searchBarText={searchBarText}
+						setSearchBarText={setSearchBarText}
+					/>
+
 					{/* Contents */}
+					<div style={{ height: tw(32 - 4 - 10) }} />
 					<ul className="space-y-2">
 
 						{/* Header */}
@@ -315,18 +326,18 @@ const BlockEditorApp = () => {
 			<div className="flex-shrink-0 hidden md:block w-12" />
 			<main className="w-full max-w-2xl">
 
-				{searchText && (
-					<DocumentTitle title={`Searching “${searchText}”`} />
+				{searchBarText && (
+					<DocumentTitle title={`Searching “${searchBarText}”`} />
 				)}
 
-				{/* {searchText && ( */}
+				{/* {searchBarText && ( */}
 				{/* 	<div className="relative"> */}
 				{/* 		<div className="-mt-8 absolute top-0 inset-x-0"> */}
-				{/* 			<DocumentTitle title={`Searching “${searchText}”`}> */}
+				{/* 			<DocumentTitle title={`Searching “${searchBarText}”`}> */}
 				{/* 				<h1 ref={searchHeaderRef} className="font-bold text-4xl truncate text-gray-800"> */}
 				{/* 					Searching “ */}
 				{/* 					<span className="underline" style={{ textDecorationColor: "var(--teal-400)" }}> */}
-				{/* 						{searchText.trim()} */}
+				{/* 						{searchBarText.trim()} */}
 				{/* 					</span> */}
 				{/* 					” */}
 				{/* 				</h1> */}
