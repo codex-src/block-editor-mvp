@@ -4,7 +4,7 @@ import { useImmerReducer } from "use-immer"
 const initialState = {
 	filter: "",
 
-	document: [
+	backend: [
 		{
 			type: "p",
 			key: uuid(),
@@ -20,7 +20,10 @@ const initialState = {
 			},
 		},
 	],
-	rerenderDocument: 0,
+	frontend: [
+		// ...
+	],
+	rerenderFrontend: 0,
 	focused: false,
 	range: {
 		start: {
@@ -35,8 +38,7 @@ const initialState = {
 }
 
 const actions = state => ({
-	// Updates the editor filter.
-	updateFilter(filter) {
+	filter(filter) {
 		state.filter = filter
 	},
 
@@ -52,15 +54,29 @@ const actions = state => ({
 	select(range) {
 		state.range = range
 	},
+
+	backspace() {
+		// TODO
+	},
+	delete() {
+		// TODO
+	},
+	// tab() {
+	// 	// TODO
+	// },
+	enter() {
+		// TODO
+	},
+
 	// Uncontrolled input handler.
 	uncontrolledInput(children, collapsedRange) {
-		const node = state.document.find(each => each.key === collapsedRange.start.key)
+		const node = state.backend.find(each => each.key === collapsedRange.start.key)
 		// if (!node) {
 		// 	throw new Error(`actions.uncontrolledInput: no such node; node=${node}`)
 		// }
 		node.props.children = children
 		state.range = collapsedRange
-		state.rerenderDocument++
+		state.rerenderFrontend++
 	},
 })
 
@@ -85,8 +101,8 @@ const actions = state => ({
 
 function BlockEditorReducer(state, action) {
 	switch (action.type) {
-	case "UPDATE_FILTER":
-		actions(state).updateFilter(action.filter)
+	case "FILTER":
+		actions(state).filter(action.filter)
 		return
 
 	case "FOCUS":
