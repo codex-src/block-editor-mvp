@@ -3,6 +3,7 @@ import ApplyTransition from "lib/x/ApplyTransition"
 import disableAutoCorrect from "lib/x/disableAutoCorrect"
 import DocumentTitle from "lib/x/DocumentTitle"
 import React from "react"
+import ReactDOM from "react-dom"
 import Transition from "lib/x/Transition"
 import tw from "./tw"
 import useBlockEditor from "./useBlockEditor"
@@ -120,28 +121,67 @@ function getCurrentRange() {
 	return { start, end }
 }
 
+// const [scrollYBeforeSearchBarChange, setScrollYBeforeSearchBarChange] = React.useState(0)
+// const [searchBarText, setSearchBarText] = React.useState("")
+//
+// // Effect for auto-scrolling on searchBarText.
+// React.useEffect(() => {
+// 	if ([...searchBarText].length <= 1 && window.scrollY) {
+// 		setScrollYBeforeSearchBarChange(window.scrollY)
+// 	}
+// 	const id = setTimeout(() => {
+// 		if (!searchBarText) {
+// 			window.scrollTo(0, scrollYBeforeSearchBarChange)
+// 		} else {
+// 			window.scrollTo(0, 0)
+// 		}
+// 	}, 200)
+// 	return () => {
+// 		clearTimeout(id)
+// 	}
+// }, [searchBarText])
+
+const ReactDocument = ({ state, dispatch }) => (
+	// TODO: Add support for each.type.
+	state.document.map(each => (
+		<p
+			key={each.key}
+			id={each.key}
+			className="leading-relaxed text-gray-800 border"
+			style={{
+				minHeight: "1em",
+				fontSize: tw(4.25),
+			}}
+			data-node
+		>
+			{each.props.children}
+		</p>
+	))
+)
+
 const BlockEditorApp = () => {
+	const articleRef = React.useRef(null)
+
 	const [state, dispatch] = useBlockEditor()
 
-	// const [scrollYBeforeSearchBarChange, setScrollYBeforeSearchBarChange] = React.useState(0)
-	// const [searchBarText, setSearchBarText] = React.useState("")
-	//
-	// // Effect for auto-scrolling on searchBarText.
-	// React.useEffect(() => {
-	// 	if ([...searchBarText].length <= 1 && window.scrollY) {
-	// 		setScrollYBeforeSearchBarChange(window.scrollY)
-	// 	}
-	// 	const id = setTimeout(() => {
-	// 		if (!searchBarText) {
-	// 			window.scrollTo(0, scrollYBeforeSearchBarChange)
-	// 		} else {
-	// 			window.scrollTo(0, 0)
-	// 		}
-	// 	}, 200)
-	// 	return () => {
-	// 		clearTimeout(id)
-	// 	}
-	// }, [searchBarText])
+	// Rerenders the document and cursors.
+	React.useLayoutEffect(
+		React.useCallback(() => {
+			const s = document.getSelection()
+			s.removeAllRanges()
+			ReactDOM.render(<ReactDocument state={state} dispatch={dispatch} />, articleRef.current, () => {
+				if (!state.focused) {
+					// No-op
+					return
+				}
+				const [s, r] = [document.getSelection(), document.createRange()]
+				r.setStart(document.getElementById(state.range.start.key), state.range.start.offset)
+				r.setEnd(document.getElementById(state.range.end.key), state.range.end.offset)
+				s.addRange(r)
+			})
+		}, [state, dispatch]),
+		[state.document, state.range],
+	)
 
 	return (
 		<div className="px-4 sm:px-6 py-32 flex flex-row justify-center items-start">
@@ -163,6 +203,7 @@ const BlockEditorApp = () => {
 			<DocumentTitle title={!state.filter ? "TODO" : `Filtering for “${state.filter}”`}>
 				<div>
 					<article
+						ref={articleRef}
 						className="max-w-2xl w-full focus:outline-none"
 
 						onFocus={e => {
@@ -212,24 +253,7 @@ const BlockEditorApp = () => {
 
 						contentEditable
 						suppressContentEditableWarning
-					>
-
-						{/* TODO: each.type */}
-						{state.document.map(each => (
-							<p
-								key={each.key}
-								id={each.key}
-								className="leading-relaxed text-gray-800 border"
-								style={{
-									minHeight: tw(4.25),
-									fontSize: tw(4.25),
-								}}
-								data-node
-							>
-								{each.props.children}
-							</p>
-						))}
-					</article>
+					/>
 
 					{process.env.NODE_ENV !== "production" && (
 						<div className="mt-6">
