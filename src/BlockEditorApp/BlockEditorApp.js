@@ -182,10 +182,14 @@ const BlockEditorApp = () => {
 					// No-op
 					return
 				}
-				const [s, r] = [document.getSelection(), document.createRange()]
-				r.setStart(descendTextNode(document.getElementById(state.range.start.key)), state.range.start.offset)
-				r.setEnd(descendTextNode(document.getElementById(state.range.end.key)), state.range.end.offset)
-				s.addRange(r)
+				try {
+					const [s, r] = [document.getSelection(), document.createRange()]
+					r.setStart(descendTextNode(document.getElementById(state.range.start.key)), state.range.start.offset)
+					r.setEnd(descendTextNode(document.getElementById(state.range.end.key)), state.range.end.offset)
+					s.addRange(r)
+				} catch (error) {
+					console.error(`BlockEditorApp.ReactDOM.render: ${error}`)
+				}
 			})
 		}, [state, dispatch]),
 		[state.document, state.range],
